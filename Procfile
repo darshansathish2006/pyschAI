@@ -1,1 +1,1 @@
-web: gunicorn psychAI.wsgi
+web: gunicorn psychAI.wsgi:application
