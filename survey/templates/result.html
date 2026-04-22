@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/result.css' %}?v=1">
+    
+</head>
+<body>
+    <div class="container main">
+
+        <div class="result_container">
+            <h2>Your Score: {{ score }}</h2>
+            <h3>Depression Level (PHQ-9): {{ level }}</h3>
+            <hr>
+            <h3>AI Prediction: {{ ml_prediction }}</h3>
+            <p style="color:rgb(255, 213, 0);">
+            This is not a medical diagnosis. Please consult a professional.
+            </p>
+
+            {% if level != ml_prediction %}
+                <p style="color: orange; font-weight: bold;">
+                    ⚠️ AI and PHQ results differ. Further evaluation may be needed.
+                </p>
+            {% endif %}
+        </div>
+        
+
+    </div>
+    
+
+</body>
+</html>

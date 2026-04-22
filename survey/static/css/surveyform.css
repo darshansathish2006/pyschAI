@@ -1,0 +1,102 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+
+    background: linear-gradient(
+                    rgba(0, 0, 0, 0.85), 
+                    rgba(0, 0, 0, 0.75)
+                ),
+                url("/static/css/images/background/bg.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    color: white;
+}
+
+
+.form_container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 30px;
+
+    border-radius: 20px;
+    background-color: rgba(82, 158, 154, 0.9);
+
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: black;
+}
+
+.intro_text {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+
+.question_box {
+    margin-bottom: 25px;
+    padding: 15px;
+
+    border-radius: 15px;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.options label {
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+    transition: 0.2s;
+}
+
+.options label:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+
+input[type="radio"] {
+    margin-right: 8px;
+}
+
+
+.submit_btn {
+    display: block;
+    margin: 30px auto 0;
+
+    padding: 12px 25px;
+    border: none;
+
+    background-color: #0b3d3d;
+    color: white;
+
+    border-radius: 10px;
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.submit_btn:hover {
+    background-color: #072b2b;
+    transform: translateY(-2px);
+}
+
+
+.error_box {
+    color: red;
+    text-align: center;
+    margin-bottom: 15px;
+}

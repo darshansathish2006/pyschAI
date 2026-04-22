@@ -1,0 +1,279 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BDI Assessment</title>
+
+    <link rel="stylesheet" href="{% static 'css/surveyform.css' %}?v=2">
+</head>
+
+<body>
+
+<div class="form_container">
+
+    <h2>BDI (Beck Depression Inventory)</h2>
+
+    {% if error %}
+        <div class="error_box">{{ error }}</div>
+    {% endif %}
+
+
+    <p class="intro_text">
+        Please read each group of statements carefully and select the one that best describes how you have been feeling.
+    </p>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <!-- Q1 -->
+        <div class="question_box">
+            <p>1. Sadness</p>
+            <div class="options">
+                <label><input type="radio" name="q1" value="0" required> I do not feel sad.</label>
+                <label><input type="radio" name="q1" value="1"> I feel sad.</label>
+                <label><input type="radio" name="q1" value="2"> I am sad all the time and can't snap out of it.</label>
+                <label><input type="radio" name="q1" value="3"> I am so sad and unhappy that I can't stand it.</label>
+            </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="question_box">
+            <p>2. Pessimism</p>
+            <div class="options">
+                <label><input type="radio" name="q2" value="0" required> I am not discouraged about the future.</label>
+                <label><input type="radio" name="q2" value="1"> I feel discouraged about the future.</label>
+                <label><input type="radio" name="q2" value="2"> I feel I have nothing to look forward to.</label>
+                <label><input type="radio" name="q2" value="3"> I feel the future is hopeless.</label>
+            </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="question_box">
+            <p>3. Failure</p>
+            <div class="options">
+                <label><input type="radio" name="q3" value="0" required> I do not feel like a failure.</label>
+                <label><input type="radio" name="q3" value="1"> I feel I have failed more than others.</label>
+                <label><input type="radio" name="q3" value="2"> I see many failures in my life.</label>
+                <label><input type="radio" name="q3" value="3"> I feel I am a complete failure.</label>
+            </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="question_box">
+            <p>4. Satisfaction</p>
+            <div class="options">
+                <label><input type="radio" name="q4" value="0" required> I enjoy things as before.</label>
+                <label><input type="radio" name="q4" value="1"> I don't enjoy things like before.</label>
+                <label><input type="radio" name="q4" value="2"> I get no satisfaction anymore.</label>
+                <label><input type="radio" name="q4" value="3"> I am bored with everything.</label>
+            </div>
+        </div>
+
+        <!-- Q5 -->
+        <div class="question_box">
+            <p>5. Guilt</p>
+            <div class="options">
+                <label><input type="radio" name="q5" value="0" required> I don't feel guilty.</label>
+                <label><input type="radio" name="q5" value="1"> I feel guilty sometimes.</label>
+                <label><input type="radio" name="q5" value="2"> I feel guilty most of the time.</label>
+                <label><input type="radio" name="q5" value="3"> I feel guilty all the time.</label>
+            </div>
+        </div>
+
+        <!-- Q6 -->
+        <div class="question_box">
+            <p>6. Punishment</p>
+            <div class="options">
+                <label><input type="radio" name="q6" value="0" required> I don't feel punished.</label>
+                <label><input type="radio" name="q6" value="1"> I feel I may be punished.</label>
+                <label><input type="radio" name="q6" value="2"> I expect punishment.</label>
+                <label><input type="radio" name="q6" value="3"> I feel I am being punished.</label>
+            </div>
+        </div>
+
+        <!-- Q7 -->
+        <div class="question_box">
+            <p>7. Self-Disappointment</p>
+            <div class="options">
+                <label><input type="radio" name="q7" value="0" required> I am not disappointed in myself.</label>
+                <label><input type="radio" name="q7" value="1"> I am disappointed in myself.</label>
+                <label><input type="radio" name="q7" value="2"> I am disgusted with myself.</label>
+                <label><input type="radio" name="q7" value="3"> I hate myself.</label>
+            </div>
+        </div>
+
+        <!-- Q8 -->
+        <div class="question_box">
+            <p>8. Self-Criticism</p>
+            <div class="options">
+                <label><input type="radio" name="q8" value="0" required> I don't feel worse than others.</label>
+                <label><input type="radio" name="q8" value="1"> I criticize myself for mistakes.</label>
+                <label><input type="radio" name="q8" value="2"> I blame myself often.</label>
+                <label><input type="radio" name="q8" value="3"> I blame myself for everything.</label>
+            </div>
+        </div>
+
+        <!-- Q9 -->
+        <div class="question_box">
+            <p>9. Suicidal Thoughts</p>
+            <div class="options">
+                <label><input type="radio" name="q9" value="0" required> I have no thoughts of killing myself.</label>
+                <label><input type="radio" name="q9" value="1"> I have thoughts but won't act.</label>
+                <label><input type="radio" name="q9" value="2"> I would like to kill myself.</label>
+                <label><input type="radio" name="q9" value="3"> I would kill myself if I had the chance.</label>
+            </div>
+        </div>
+
+        <!-- Q10 -->
+        <div class="question_box">
+            <p>10. Crying</p>
+            <div class="options">
+                <label><input type="radio" name="q10" value="0" required> I don't cry more than usual.</label>
+                <label><input type="radio" name="q10" value="1"> I cry more than I used to.</label>
+                <label><input type="radio" name="q10" value="2"> I cry all the time now.</label>
+                <label><input type="radio" name="q10" value="3"> I can't cry even if I want to.</label>
+            </div>
+        </div>
+
+        <!-- Q11 -->
+        <div class="question_box">
+            <p>11. Irritability</p>
+            <div class="options">
+                <label><input type="radio" name="q11" value="0" required> I am no more irritated than usual.</label>
+                <label><input type="radio" name="q11" value="1"> I am slightly more irritated now.</label>
+                <label><input type="radio" name="q11" value="2"> I am quite irritated most of the time.</label>
+                <label><input type="radio" name="q11" value="3"> I feel irritated all the time.</label>
+            </div>
+        </div>
+
+        <!-- Q12 -->
+        <div class="question_box">
+            <p>12. Social Interest</p>
+            <div class="options">
+                <label><input type="radio" name="q12" value="0" required> I have not lost interest in people.</label>
+                <label><input type="radio" name="q12" value="1"> I am less interested in people.</label>
+                <label><input type="radio" name="q12" value="2"> I have lost most interest in people.</label>
+                <label><input type="radio" name="q12" value="3"> I have no interest in people.</label>
+            </div>
+        </div>
+
+        <!-- Q13 -->
+        <div class="question_box">
+            <p>13. Decision Making</p>
+            <div class="options">
+                <label><input type="radio" name="q13" value="0" required> I make decisions as well as before.</label>
+                <label><input type="radio" name="q13" value="1"> I delay decisions more than before.</label>
+                <label><input type="radio" name="q13" value="2"> I find it much harder to decide.</label>
+                <label><input type="radio" name="q13" value="3"> I cannot make decisions anymore.</label>
+            </div>
+        </div>
+
+        <!-- Q14 -->
+        <div class="question_box">
+            <p>14. Self-Image</p>
+            <div class="options">
+                <label><input type="radio" name="q14" value="0" required> I don't feel I look worse than before.</label>
+                <label><input type="radio" name="q14" value="1"> I worry about looking unattractive.</label>
+                <label><input type="radio" name="q14" value="2"> I feel permanently unattractive.</label>
+                <label><input type="radio" name="q14" value="3"> I believe I look ugly.</label>
+            </div>
+        </div>
+
+        <!-- Q15 -->
+        <div class="question_box">
+            <p>15. Work Ability</p>
+            <div class="options">
+                <label><input type="radio" name="q15" value="0" required> I can work as well as before.</label>
+                <label><input type="radio" name="q15" value="1"> I need extra effort to start work.</label>
+                <label><input type="radio" name="q15" value="2"> I must push myself hard to work.</label>
+                <label><input type="radio" name="q15" value="3"> I cannot work at all.</label>
+            </div>
+        </div>
+
+        <!-- Q16 -->
+        <div class="question_box">
+            <p>16. Sleep</p>
+            <div class="options">
+                <label><input type="radio" name="q16" value="0" required> I sleep as well as usual.</label>
+                <label><input type="radio" name="q16" value="1"> I don't sleep as well.</label>
+                <label><input type="radio" name="q16" value="2"> I wake up earlier and struggle to sleep again.</label>
+                <label><input type="radio" name="q16" value="3"> I wake up very early and can't sleep again.</label>
+            </div>
+        </div>
+
+        <!-- Q17 -->
+        <div class="question_box">
+            <p>17. Fatigue</p>
+            <div class="options">
+                <label><input type="radio" name="q17" value="0" required> I am not more tired than usual.</label>
+                <label><input type="radio" name="q17" value="1"> I get tired more easily.</label>
+                <label><input type="radio" name="q17" value="2"> I get tired doing almost anything.</label>
+                <label><input type="radio" name="q17" value="3"> I am too tired to do anything.</label>
+            </div>
+        </div>
+
+        <!-- Q18 -->
+        <div class="question_box">
+            <p>18. Appetite</p>
+            <div class="options">
+                <label><input type="radio" name="q18" value="0" required> My appetite is normal.</label>
+                <label><input type="radio" name="q18" value="1"> My appetite is worse than before.</label>
+                <label><input type="radio" name="q18" value="2"> My appetite is much worse.</label>
+                <label><input type="radio" name="q18" value="3"> I have no appetite.</label>
+            </div>
+        </div>
+
+        <!-- Q19 -->
+        <div class="question_box">
+            <p>19. Weight Loss</p>
+            <div class="options">
+                <label><input type="radio" name="q19" value="0" required> No significant weight loss.</label>
+                <label><input type="radio" name="q19" value="1"> Lost more than 5 pounds.</label>
+                <label><input type="radio" name="q19" value="2"> Lost more than 10 pounds.</label>
+                <label><input type="radio" name="q19" value="3"> Lost more than 15 pounds.</label>
+            </div>
+        </div>
+
+        <!-- Q20 -->
+        <div class="question_box">
+            <p>20. Health Concern</p>
+            <div class="options">
+                <label><input type="radio" name="q20" value="0" required> I am not more worried about health.</label>
+                <label><input type="radio" name="q20" value="1"> I worry about physical problems.</label>
+                <label><input type="radio" name="q20" value="2"> I am very worried about health.</label>
+                <label><input type="radio" name="q20" value="3"> I cannot think beyond health issues.</label>
+            </div>
+        </div>
+
+        <!-- Q21 -->
+        <div class="question_box">
+            <p>21. Interest in Sex</p>
+            <div class="options">
+                <label><input type="radio" name="q21" value="0" required> No change in interest.</label>
+                <label><input type="radio" name="q21" value="1"> Less interested than before.</label>
+                <label><input type="radio" name="q21" value="2"> Almost no interest.</label>
+                <label><input type="radio" name="q21" value="3"> No interest at all.</label>
+            </div>
+        </div>
+        <!-- Continue same pattern up to Q21 -->
+        <div class="question_box">
+            <h4>Consent</h4>
+            <p>
+                I have read and understood the information above. I agree to participate voluntarily.
+            </p>
+            <div class="options">
+                <label><input type="radio" name="q22" value="0" required> I Agree</label>
+                <label><input type="radio" name="q22" value="1"> I Disagree</label>
+            </div>
+        </div>
+        <!-- FINAL BUTTON -->
+        <button type="submit" class="submit_btn">Submit Assessment</button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

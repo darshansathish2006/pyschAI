@@ -1,0 +1,28 @@
+body {
+    background-color: #4E938F;
+    margin: 0;
+    height: 100vh;
+}
+
+/* Center container fully (both horizontally & vertically) */
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Fix container */
+.result_container {
+    display: flex;              /* ❗ fixed */
+    flex-direction: column;     /* stack content vertically */
+    align-items: center;        /* center horizontally */
+    justify-content: center;    /* center vertically */
+
+    border: solid 1px white;
+    background-color: #305957;
+
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+}
