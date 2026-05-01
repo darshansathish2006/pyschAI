@@ -22,7 +22,7 @@ def home(request):
     return HttpResponse("Hello, your Django app is live 🚀")
 
 urlpatterns = [
-    path('', home),
+    path('',include('survey.urls')),
     path('admin/', admin.site.urls),
-    path('survey/',include('survey.urls')),
+
 ]
