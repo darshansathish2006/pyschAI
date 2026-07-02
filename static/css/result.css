@@ -26,3 +26,35 @@ body {
     border-radius: 15px;
     text-align: center;
 }
+
+.ai_companion_container{
+    margin-top:30px;
+    padding:25px;
+
+    border-radius:15px;
+
+    background:#244543;
+
+    border:1px solid #69dfe1;
+}
+
+.ai_companion_container h3{
+    color:#69dfe1;
+    margin-bottom:15px;
+}
+
+.ai_message{
+    color:white;
+    line-height:1.8;
+    font-size:16px;
+}
+
+.action_buttons{
+    margin-top:30px;
+
+    display:flex;
+    justify-content:center;
+    gap:15px;
+
+    flex-wrap:wrap;
+}

@@ -1,0 +1,162 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Analytics</title>
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+</head>
+
+<body class="bg-dark text-white">
+
+<div class="container mt-5">
+
+    <h1 class="mb-4">Assessment Analytics</h1>
+
+    <div class="card bg-secondary mb-4">
+        <div class="card-body">
+
+            <h3>Total Assessments</h3>
+
+            <h2>{{ total_assessments }}</h2>
+
+        </div>
+    </div>
+
+    <div class="card bg-secondary mb-4">
+        <div class="card-body">
+
+            <h3>Latest Assessment</h3>
+
+            {% if latest %}
+
+                <p><strong>Test:</strong> {{ latest.test_type }}</p>
+
+                <p><strong>Score:</strong> {{ latest.total_score }}</p>
+
+                <p><strong>Severity:</strong> {{ latest.severity }}</p>
+
+                <p><strong>Date:</strong> {{ latest.created_at }}</p>
+
+            {% else %}
+
+                <p>No assessments found.</p>
+
+            {% endif %}
+
+        </div>
+    </div>
+
+    <div class="card bg-secondary mb-4">
+        <div class="card-body">
+
+            <h3>Average Score</h3>
+
+            <h2>{{ average_score }}</h2>
+
+        </div>
+    </div>
+
+    <div class="card bg-secondary mb-4">
+        <div class="card-body">
+
+            <h3>Severity Distribution</h3>
+
+            <ul>
+
+                {% for severity, count in severity_counts.items %}
+
+                    <li>{{ severity }} : {{ count }}</li>
+
+                {% endfor %}
+
+            </ul>
+
+        </div>
+    </div>
+
+    <div class="card bg-secondary mb-4">
+        <div class="card-body">
+
+            <h3>Score Trend</h3>
+
+            <canvas id="scoreChart"></canvas>
+
+        </div>
+    </div>
+
+    <div class="card bg-secondary">
+        <div class="card-body">
+
+            <h3>Assessment History</h3>
+
+            <table class="table table-light">
+
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Test</th>
+                        <th>Score</th>
+                        <th>Severity</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                {% for assessment in assessments %}
+
+                    <tr>
+                        <td>{{ assessment.created_at }}</td>
+                        <td>{{ assessment.test_type }}</td>
+                        <td>{{ assessment.total_score }}</td>
+                        <td>{{ assessment.severity }}</td>
+                    </tr>
+
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+const labels = [
+    {% for assessment in assessments %}
+        "{{ assessment.created_at|date:'d M' }}",
+    {% endfor %}
+];
+
+const scores = [
+    {% for assessment in assessments %}
+        {{ assessment.total_score }},
+    {% endfor %}
+];
+
+new Chart(
+    document.getElementById('scoreChart'),
+    {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Assessment Score',
+                data: scores,
+                tension: 0.3
+            }]
+        }
+    }
+);
+
+</script>
+
+</body>
+</html>

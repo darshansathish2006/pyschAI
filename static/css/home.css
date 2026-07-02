@@ -1,0 +1,296 @@
+/* ------------------- Background ------------------- */
+
+body{
+    margin:0;
+    font-family: "Segoe UI", sans-serif;
+    color:white;
+
+    background:
+    linear-gradient(rgba(5,15,25,0.75),
+                    rgba(5,15,25,0.75)),
+    url("/static/images/background/bg.jpg");
+
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+
+    background:url("/static/images/background/bg.jpg")
+    center/cover no-repeat;
+
+    filter:blur(8px);
+    opacity:.35;
+
+    z-index:-1;
+}
+
+/* ---------------- Hero ---------------- */
+
+.hero-section{
+
+    padding:40px;
+
+    border-radius:25px;
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(10px);
+
+    margin-bottom:40px;
+
+    border:1px solid rgba(255,255,255,.15);
+
+}
+
+.hero-section h1{
+
+    font-size:42px;
+
+    font-weight:700;
+
+    color:#74f4f7;
+
+}
+
+.hero-section p{
+
+    color:#d8d8d8;
+
+    font-size:18px;
+
+}
+
+/* ---------------- Cards ---------------- */
+
+.dashboard-card{
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(10px);
+
+    border-radius:22px;
+
+    padding:25px;
+
+    border:1px solid rgba(255,255,255,.15);
+
+    height:100%;
+
+    transition:.3s;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.25);
+
+}
+
+.dashboard-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 15px 35px rgba(0,0,0,.35);
+
+}
+
+.dashboard-card h3{
+
+    color:#74f4f7;
+
+    margin-bottom:15px;
+
+    font-weight:700;
+
+}
+
+.dashboard-card p{
+
+    color:#ececec;
+
+    line-height:1.6;
+
+}
+
+/* AI card */
+
+.ai-card{
+
+    background:linear-gradient(135deg,#148d92,#0f5d68);
+
+}
+
+.ai-card h3{
+
+    color:white;
+
+}
+
+/* ---------------- Buttons ---------------- */
+
+.btn{
+
+    border-radius:12px;
+
+    padding:10px;
+
+    font-weight:600;
+
+}
+
+.btn-primary{
+
+    background:#159895;
+
+    border:none;
+
+}
+
+.btn-primary:hover{
+
+    background:#127d7a;
+
+}
+
+.btn-success{
+
+    background:#0f766e;
+
+    border:none;
+
+}
+
+.btn-success:hover{
+
+    background:#0b5b55;
+
+}
+
+.btn-info{
+
+    color:white;
+
+    background:#2b9ed1;
+
+    border:none;
+
+}
+
+.btn-info:hover{
+
+    color:white;
+
+    background:#2382ad;
+
+}
+
+.btn-light{
+
+    font-weight:bold;
+
+}
+
+/* ---------------- Table ---------------- */
+
+.table{
+
+    color:white;
+
+    margin-top:20px;
+
+}
+
+.table thead{
+
+    background:#148d92;
+
+}
+
+.table th{
+
+    color:white;
+
+    border:none;
+
+}
+
+.table td{
+
+    border-color:rgba(255,255,255,.1);
+
+}
+
+.table tbody tr{
+
+    transition:.2s;
+
+}
+
+.table tbody tr:hover{
+
+    background:rgba(255,255,255,.08);
+
+}
+
+/* ---------------- Alert ---------------- */
+
+.alert{
+
+    border-radius:20px;
+
+    font-size:15px;
+
+}
+
+/* ---------------- Responsive ---------------- */
+
+@media(max-width:992px){
+
+.hero-section h1{
+
+    font-size:32px;
+
+}
+
+.dashboard-card{
+
+    margin-bottom:20px;
+
+}
+
+}
+
+.card-icon{
+
+    width:70px;
+
+    height:70px;
+
+    margin:0 auto 20px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#159895;
+
+    font-size:30px;
+
+    color:white;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.3);
+
+}
+
+.ai-card .card-icon{
+
+    background:white;
+
+    color:#159895;
+
+}

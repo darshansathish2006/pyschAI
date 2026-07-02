@@ -1,0 +1,148 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Wellness Companion</title>
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+
+    <link rel="stylesheet"
+          href="{% static 'css/chatbot.css' %}?v=1">
+
+</head>
+
+<body>
+
+<div class="chat-container">
+
+    <div class="chat-header">
+        <h2>🧠 AI Wellness Companion</h2>
+        <p>Your supportive AI conversation partner</p>
+    </div>
+
+    <div id="chatBox" class="chat-box">
+
+        <div class="message ai-message">
+            <div class="avatar">🤖</div>
+
+            <div class="bubble">
+                Hello! I'm here to listen and support you.
+                How are you feeling today?
+            </div>
+        </div>
+
+    </div>
+
+    <div class="typing" id="typing" style="display:none;">
+        🤖 AI is thinking...
+    </div>
+
+    <form id="chatForm" class="chat-input">
+
+        {% csrf_token %}
+
+        <textarea
+            id="message"
+            name="message"
+            rows="1"
+            placeholder="Type your message..."
+        ></textarea>
+
+        <button type="submit">
+            ➤
+        </button>
+
+    </form>
+
+</div>
+
+<script>
+
+const form = document.getElementById("chatForm");
+const chatBox = document.getElementById("chatBox");
+const typing = document.getElementById("typing");
+const textarea = document.getElementById("message");
+
+function addUserMessage(text){
+
+    chatBox.innerHTML += `
+        <div class="message user-message">
+            <div class="bubble">${text}</div>
+            <div class="avatar">👤</div>
+        </div>
+    `;
+
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+function addAIMessage(text){
+
+    chatBox.innerHTML += `
+        <div class="message ai-message">
+            <div class="avatar">🤖</div>
+            <div class="bubble">${text}</div>
+        </div>
+    `;
+
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+form.addEventListener("submit", async function(e){
+
+    e.preventDefault();
+
+    const message = textarea.value.trim();
+
+    if(message==="")
+        return;
+
+    addUserMessage(message);
+
+    typing.style.display = "block";
+
+    const formData = new FormData();
+    formData.append(
+        "csrfmiddlewaretoken",
+        document.querySelector("[name=csrfmiddlewaretoken]").value
+    );
+    formData.append("message", message);
+
+    const response = await fetch("", {
+        method: "POST",
+        body: formData
+    });
+
+    textarea.value = "";
+
+    const data = await response.json();
+
+    typing.style.display="none";
+
+    addAIMessage(data.reply);
+
+});
+
+textarea.addEventListener("keydown",function(e){
+
+    if(e.key==="Enter" && !e.shiftKey){
+
+        e.preventDefault();
+
+        form.dispatchEvent(new Event("submit"));
+
+    }
+
+});
+
+</script>
+
+</body>
+
+</html>
