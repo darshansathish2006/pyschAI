@@ -52,7 +52,6 @@ pystray==0.19.5
 python-dateutil==2.9.0.post0
 python-dotenv==1.0.0
 pytz==2025.2
-pywin32==311
 reportlab==4.4.3
 requests==2.32.5
 scikit-learn==1.7.2
