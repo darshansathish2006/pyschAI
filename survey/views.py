@@ -12,9 +12,14 @@ from django.conf import settings
 from django.db.models import Avg
 from django.http import JsonResponse
 
-client = Groq(
-    api_key=settings.GROQ_API_KEY
-)
+def get_client():
+
+    api_key = settings.GROQ_API_KEY or os.environ.get("GROQ_API_KEY")
+
+    if not api_key:
+        raise Exception("GROQ_API_KEY environment variable not found.")
+
+    return Groq(api_key=api_key)
 
 
 
@@ -111,6 +116,8 @@ def generate_support_message(
 
         Keep the response warm, supportive, and under 200 words.
         """
+
+        client = get_client()
 
         response = client.chat.completions.create(
             model="llama-3.3-70b-versatile",
@@ -296,9 +303,8 @@ def bdisurvey(request):
 
 from django.http import JsonResponse
 from django.shortcuts import render
-
+@login_required
 def chatbot(request):
-
     # Initialize chat history once
     if "chat_history" not in request.session:
         request.session["chat_history"] = []
@@ -347,6 +353,8 @@ Rules:
         messages.extend(conversation)
 
         try:
+
+            client = get_client()
 
             response = client.chat.completions.create(
                 model="llama-3.3-70b-versatile",
