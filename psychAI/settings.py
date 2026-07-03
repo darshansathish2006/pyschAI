@@ -28,10 +28,12 @@ GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 SECRET_KEY = 'django-insecure-&ho@m4gb3m0q&3-dbpu&mk2(#hw&-p+qy@4tk1c2)yq^!6b+i0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = ['*']
-
+DEBUG = os.environ.get("DEBUG", "False") == "True"
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    "localhost",
+    ".vercel.app",
+]
 
 # Application definition
 
