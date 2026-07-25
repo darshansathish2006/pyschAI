@@ -1,244 +1,1388 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PsychAI Dashboard</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="{% static 'css/home.css' %}?v=2">
-</head>
+{% block title %}
+PsychAI Dashboard
+{% endblock %}
 
-<body>
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}?v=12">
+{% endblock %}
 
-<div class="container py-5">
+{% block content %}
 
-    <!-- Hero -->
-    <div class="hero-section mb-5">
+<div class="dashboard-wrapper">
 
-        <h1>
-            Good {% now "H" as hour %}
-            Welcome, {{ request.user.username }} 👋
-        </h1>
+    <!-- ================= HERO SECTION ================= -->
 
-        <p class="lead">
-            Here's an overview of your mental wellness journey.
-            Complete assessments, chat with your AI companion, and monitor your progress.
-        </p>
+    <section class="hero-section">
+
+        <div class="hero-background">
+            <div class="blob blob-one"></div>
+            <div class="blob blob-two"></div>
+            <div class="blob blob-three"></div>
+        </div>
+        <div class="container">
+
+            <div class="row align-items-center gx-5">
+
+                <!-- LEFT CONTENT -->
+
+                <div class="col-lg-7">
+
+                    <span class="hero-badge">
+                        <i class="fas fa-heart me-2"></i>
+                        AI Powered Mental Wellness Platform
+                    </span>
+
+                    <h1 class="hero-title mt-4">
+                        Welcome back,
+                        <span>{{ request.user.username }}</span>
+                    </h1>
+
+                    <p class="hero-description mt-4">
+
+                        Your mental health journey matters.
+
+                        Complete clinically validated assessments,
+                        monitor your wellness progress,
+                        receive AI-powered insights,
+                        and build healthier habits one step at a time.
+
+                    </p>
+
+                    <div class="hero-buttons mt-5">
+
+                        <a href="{% url 'survey' %}" class="btn btn-primary hero-btn">
+
+                            <i class="fas fa-notes-medical me-2"></i>
+
+                            Start PHQ-9
+
+                        </a>
+
+                        <a href="{% url 'bdisurvey' %}" class="btn btn-outline-primary hero-btn-outline">
+
+                            <i class="fas fa-brain me-2"></i>
+
+                            Take BDI
+
+                        </a>
+
+                    </div>
+
+                
+                </div>
+
+                <!-- RIGHT CONTENT -->
+
+                <div class="col-lg-5">
+
+                    <div class="wellness-card">
+
+                        <div class="wellness-header">
+
+                            <div>
+
+                                <span class="mini-title">
+
+                                    TODAY'S WELLNESS
+
+                                </span>
+
+                                <h3>Mental Wellness</h3>
+
+                            </div>
+
+                            <div class="pulse-circle">
+
+                                <i class="fas fa-heart"></i>
+
+                            </div>
+
+                        </div>
+
+                        <div class="wellness-score">
+
+                            {% if latest %}
+
+                            <h1>{{ latest.total_score }}</h1>
+
+                            <span>Latest Assessment Score</span>
+
+                            {% else %}
+
+                            <h1>--</h1>
+
+                            <span>No Assessment Yet</span>
+
+                            {% endif %}
+
+                        </div>
+
+                        <div class="progress-area">
+
+                            <div class="progress-label">
+
+                                <span>Wellness Progress</span>
+
+                                <span>72%</span>
+
+                            </div>
+
+                            <div class="custom-progress">
+
+                                <div class="custom-progress-fill"></div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="wellness-info">
+
+                            {% if latest %}
+
+                            <div class="info-item">
+
+                                <span>Latest Test</span>
+
+                                <strong>{{ latest.test_type }}</strong>
+
+                            </div>
+
+                            <div class="info-item">
+
+                                <span>Severity</span>
+
+                                <strong>{{ latest.severity }}</strong>
+
+                            </div>
+
+                            {% else %}
+
+                            <div class="info-item">
+
+                                <span>Status</span>
+
+                                <strong>Begin Assessment</strong>
+
+                            </div>
+
+                            <div class="info-item">
+
+                                <span>Recommendation</span>
+
+                                <strong>Take PHQ-9</strong>
+
+                            </div>
+
+                            {% endif %}
+
+                        </div>
+
+                        <a href="{% url 'analytics' %}" class="view-analytics-btn">
+
+                            View Complete Analytics
+
+                            <i class="fas fa-arrow-right ms-2"></i>
+
+                        </a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+    </section>
+
+    <!-- ================= END HERO ================= -->
+
+
+<!-- ========================================================= -->
+<!-- PART 2 : MINIMAL WELLNESS GRID -->
+<!-- ========================================================= -->
+
+<section class="wellness-grid-section">
+
+    <div class="container">
+
+    <div class="wellness-layout">
+
+        <div class="wellness-left">
+
+    <span class="grid-subtitle">
+
+        WELLNESS HUB
+
+    </span>
+
+    <h2 class="grid-title">
+
+        A quieter mind,
+        <span>one small ritual at a time.</span>
+
+    </h2>
+
+    <p class="grid-description">
+
+        Choose one gentle practice today.
+        Small, consistent moments of care create lasting emotional wellbeing.
+
+    </p>
+
+</div>
+            <!-- RIGHT CONTENT -->
+
+            <div class="wellness-right">
+
+                <div class="wellness-grid">
+
+                    <!-- CARD 1 -->
+
+                    <a href="{% url 'survey' %}" class="wellness-item breathing-card">
+
+                        <div class="card-top">
+
+                            <div class="card-icon">
+
+                                <i class="fas fa-notes-medical"></i>
+
+                            </div>
+
+                            <span class="card-pill">
+
+                                PHQ-9
+
+                            </span>
+
+                        </div>
+
+                        <h3>
+
+                            Start PHQ-9
+
+                        </h3>
+
+                        <p>
+
+                            Complete a clinically validated
+                            mental wellness assessment.
+
+                        </p>
+
+                    </a>
+
+                    <!-- CARD 2 -->
+
+                    <a href="{% url 'bdisurvey' %}" class="wellness-item gratitude-card">
+
+                        <div class="card-top">
+
+                            <div class="card-icon">
+
+                                <i class="fas fa-brain"></i>
+
+                            </div>
+
+                            <span class="card-pill">
+
+                                BDI
+
+                            </span>
+
+                        </div>
+
+                        <h3>
+
+                            Beck Depression Inventory
+
+                        </h3>
+
+                        <p>
+
+                            Understand depressive symptoms
+                            through a trusted assessment.
+
+                        </p>
+
+                    </a>
+
+                    <!-- CARD 3 -->
+
+                    <a href="{% url 'chatbot' %}" class="wellness-item chat-card">
+
+                        <div class="card-top">
+
+                            <div class="card-icon">
+
+                                <i class="fas fa-comments"></i>
+
+                            </div>
+
+                            <span class="card-pill">
+
+                                ANYTIME
+
+                            </span>
+
+                        </div>
+
+                        <h3>
+
+                            Talk to PsychAI
+
+                        </h3>
+
+                        <p>
+
+                            A safe place to express your thoughts
+                            whenever you need support.
+
+                        </p>
+
+                    </a>
+
+                    <!-- CARD 4 -->
+
+                    <a href="{% url 'analytics' %}" class="wellness-item analytics-card">
+
+                        <div class="card-top">
+
+                            <div class="card-icon">
+
+                                <i class="fas fa-chart-line"></i>
+
+                            </div>
+
+                            <span class="card-pill">
+
+                                REPORTS
+
+                            </span>
+
+                        </div>
+
+                        <h3>
+
+                            Progress Analytics
+
+                        </h3>
+
+                        <p>
+
+                            Review your wellness journey
+                            and assessment history.
+
+                        </p>
+
+                </a>
+
+            </div> <!-- wellness-grid -->
+
+        </div> <!-- wellness-right -->
+
+    </div> <!-- wellness-layout -->
+
+</div> <!-- container -->
+
+</section>
+<!-- ========================================================= -->
+<!-- END PART 2 -->
+<!-- ========================================================= -->
+
+<!-- ========================================================= -->
+<!-- PART 3 : DAILY WELLNESS ACTIVITIES -->
+<!-- ========================================================= -->
+
+<section class="wellness-section">
+
+    <div class="container">
+
+        <div class="daily-wellness-header">
+
+
+            <h2>
+
+                Small Habits,
+                <span>Big Improvements</span>
+
+            </h2>
+
+            <p>
+
+                Build healthy routines with simple daily activities designed
+                to improve your emotional wellbeing and reduce stress.
+
+            </p>
+
+        </div>
+
+        <div class="row g-4">
+
+            <!-- ================================= -->
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="wellness-activity-card">
+
+    <div class="activity-top">
+
+        <div class="activity-circle">
+            <i class="fas fa-wind"></i>
+        </div>
+
+        <span class="activity-time">
+            2 min
+        </span>
 
     </div>
 
-    <!-- Dashboard Cards -->
-    <div class="row g-4">
-
-        <!-- PHQ9 -->
-        <div class="col-lg-3">
-
-            <div class="dashboard-card">
-
-                <div class="card-icon">
-                    <i class="bi bi-clipboard2-pulse-fill"></i>
-                </div>
-
-                <h3>PHQ-9 Assessment</h3>
-
-                <p>
-                    Patient Health Questionnaire for depression screening.
-                </p>
-
-                <a href="{% url 'survey' %}" class="btn btn-primary w-100">
-                    Start Assessment
-                </a>
-
-            </div>
-
-        </div>
-
-        <!-- BDI -->
-        <div class="col-lg-3">
-
-            <div class="dashboard-card">
-
-                <div class="card-icon">
-                    <i class="bi bi-journal-medical"></i>
-                </div>
-
-                <h3>BDI Assessment</h3>
-
-                <p>
-                    Beck Depression Inventory for detailed self-assessment.
-                </p>
-
-                <a href="{% url 'bdisurvey' %}" class="btn btn-success w-100">
-                    Start Assessment
-                </a>
-
-            </div>
-
-        </div>
-
-        <!-- AI -->
-        <div class="col-lg-3">
-
-            <div class="dashboard-card ai-card">
-
-                <div class="card-icon">
-                    <i class="bi bi-robot"></i>
-                </div>
-
-                <h3>AI Companion</h3>
-
-                <p>
-                    A safe space to express your thoughts and receive supportive conversations.
-                </p>
-
-                <a href="{% url 'chatbot' %}" class="btn btn-light w-100">
-                    Open Chat
-                </a>
-
-            </div>
-
-        </div>
-
-        <!-- Analytics -->
-        <div class="col-lg-3">
-
-            <div class="dashboard-card">
-
-                <div class="card-icon">
-                    <i class="bi bi-graph-up-arrow"></i>
-                </div>
-
-                <h3>Progress Analytics</h3>
-
-                <p>
-                    Track previous assessments and observe changes over time.
-                </p>
-
-                <a href="{% url 'analytics' %}" class="btn btn-info w-100">
-                    View Analytics
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- Second Row -->
-    <div class="row mt-5">
-
-        <!-- Latest Assessment -->
-        <div class="col-lg-4">
-
-            <div class="dashboard-card h-100">
-
-                <div class="card-icon">
-                    <i class="bi bi-file-earmark-medical"></i>
-                </div>
-
-                <h3>Latest Assessment</h3>
-
-                {% if latest %}
-
-                    <hr>
-
-                    <p><strong>Assessment:</strong> {{ latest.test_type }}</p>
-
-                    <p><strong>Score:</strong> {{ latest.total_score }}</p>
-
-                    <p><strong>Severity:</strong> {{ latest.severity }}</p>
-
-                    <p><strong>Date:</strong> {{ latest.created_at|date:"d M Y" }}</p>
-
-                {% else %}
-
-                    <p>No assessments completed yet.</p>
-
-                {% endif %}
-
-            </div>
-
-        </div>
-
-        <!-- Assessment History -->
-        <div class="col-lg-8">
-
-            <div class="dashboard-card">
-
-                <h3>Recent Assessments</h3>
-
-                <div class="table-responsive">
-
-                    <table class="table align-middle">
-
-                        <thead>
-
-                            <tr>
-
-                                <th>Date</th>
-                                <th>Assessment</th>
-                                <th>Score</th>
-                                <th>Severity</th>
-
-                            </tr>
-
-                        </thead>
-
-                        <tbody>
-
-                        {% for a in assessments %}
-
-                            <tr>
-
-                                <td>{{ a.created_at|date:"d M Y" }}</td>
-
-                                <td>{{ a.test_type }}</td>
-
-                                <td>{{ a.total_score }}</td>
-
-                                <td>{{ a.severity }}</td>
-
-                            </tr>
-
-                        {% empty %}
-
-                            <tr>
-
-                                <td colspan="4">
-                                    No assessments available.
-                                </td>
-
-                            </tr>
-
-                        {% endfor %}
-
-                        </tbody>
-
-                    </table>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- Disclaimer -->
-
-    <div class="alert alert-warning mt-5">
-
-        <strong>Disclaimer:</strong>
-
-        This platform is intended for educational and self-reflection purposes only.
-        It is not a substitute for professional mental health assessment, diagnosis, or treatment.
-
-    </div>
+    <h4>Box Breathing</h4>
+
+    <p>
+        Four in, four hold,
+        four out.
+        Six times.
+        That's all.
+    </p>
 
 </div>
 
-</body>
-</html>
+            </div>
+
+            <!-- ================================= -->
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="wellness-activity-card">
+
+    <div class="activity-top">
+
+        <div class="activity-circle">
+            <i class="far fa-heart"></i>
+        </div>
+
+        <span class="activity-time">
+            3 min
+        </span>
+
+    </div>
+
+    <h4>Three Gratitudes</h4>
+
+    <p>
+        Small ones count.
+        The coffee.
+        The quiet.
+    </p>
+
+</div>
+            </div>
+
+            <!-- ================================= -->
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="wellness-activity-card">
+
+    <div class="activity-top">
+
+        <div class="activity-circle">
+            <i class="far fa-comment"></i>
+        </div>
+
+        <span class="activity-time">
+            Anytime
+        </span>
+
+    </div>
+
+    <h4>Talk it Out</h4>
+
+    <p>
+        Your companion is here.
+        No advice unless asked.
+    </p>
+
+</div>
+
+            </div>
+
+            <!-- ================================= -->
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="wellness-activity-card">
+
+    <div class="activity-top">
+
+        <div class="activity-circle">
+            <i class="far fa-moon"></i>
+        </div>
+
+        <span class="activity-time">
+            Tonight
+        </span>
+
+    </div>
+
+    <h4>Wind-down</h4>
+
+    <p>
+        Screens down at 10:15.
+        Dim, dim, dim.
+    </p>
+
+</div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ========================================================= -->
+<!-- END PART 3 -->
+<!-- ========================================================= -->
+
+<!-- ========================================================= -->
+<!-- PART 4 : DAILY REFLECTION -->
+<!-- ========================================================= -->
+
+<section class="reflection-section">
+
+    <div class="container">
+
+        <div class="reflection-card">
+
+            <div class="row align-items-center">
+
+                <div class="col-lg-8">
+
+                    <span class="reflection-tag">
+
+                        <i class="fas fa-sun me-2"></i>
+
+                        Daily Reflection
+
+                    </span>
+
+                    <h2 class="reflection-title">
+
+                        Every small step towards caring for your mind
+                        is a step towards a healthier future.
+
+                    </h2>
+
+                    <p class="reflection-text">
+
+                        Mental wellness is not about being happy all the time.
+                        It is about understanding your emotions, accepting your
+                        journey, and growing stronger through every experience.
+                        Take one moment today to appreciate how far you've come.
+
+                    </p>
+
+                    <div class="reflection-footer">
+
+                        <div class="reflection-author">
+
+                            <i class="fas fa-heart-circle-check"></i>
+
+                            <span>PsychAI Wellness Companion</span>
+
+                        </div>
+
+                        <div class="reflection-date">
+
+                            <i class="fas fa-calendar-days"></i>
+
+                            <span>Today's Inspiration</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg-4">
+
+                    <div class="quote-circle">
+
+                        <i class="fas fa-quote-left"></i>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ========================================================= -->
+<!-- END PART 4 -->
+<!-- ========================================================= -->
+
+
+<!-- ========================================================= -->
+<!-- PART 5 : LATEST ASSESSMENT -->
+<!-- ========================================================= -->
+
+<section class="latest-section">
+
+    <div class="container">
+
+        <div class="latest-header">
+
+    <span class="latest-tag">
+
+        <i class="fas fa-chart-pie me-2"></i>
+
+        Latest Assessment
+
+    </span>
+
+    <h2>
+
+        Your Latest
+        <span>Mental Health Summary</span>
+
+    </h2>
+
+    <p>
+
+        Your most recent assessment provides a snapshot of your emotional wellbeing,
+        helping you understand your current state and track meaningful progress over time.
+
+    </p>
+
+</div>
+        {% if latest %}
+
+        <div class="latest-card">
+
+            <div class="row align-items-center">
+
+                <!-- LEFT -->
+
+                <div class="col-lg-4 text-center">
+
+                    <div class="score-circle">
+
+                        <span>{{ latest.total_score }}</span>
+
+                    </div>
+
+                    <h3 class="assessment-name">
+
+                        {{ latest.test_type }}
+
+                    </h3>
+
+                    <p class="assessment-date">
+
+                        {{ latest.created_at|date:"d M Y" }}
+
+                    </p>
+
+                </div>
+
+                <!-- RIGHT -->
+
+                <div class="col-lg-8">
+
+                    <div class="assessment-grid">
+
+                        <div class="assessment-item">
+
+                            <span>Assessment</span>
+
+                            <h5>{{ latest.test_type }}</h5>
+
+                        </div>
+
+                        <div class="assessment-item">
+
+                            <span>Score</span>
+
+                            <h5>{{ latest.total_score }}</h5>
+
+                        </div>
+
+                        <div class="assessment-item">
+
+                            <span>Severity</span>
+
+                            <span class="severity-pill">
+
+                                {{ latest.severity }}
+
+                            </span>
+
+                        </div>
+
+                        <div class="assessment-item">
+
+                            <span>Date</span>
+
+                            <h5>
+
+                                {{ latest.created_at|date:"d M Y" }}
+
+                            </h5>
+
+                        </div>
+
+                    </div>
+
+                    <div class="assessment-progress">
+
+                        <div class="progress-title">
+
+                            <span>Wellness Progress</span>
+
+                            <span>72%</span>
+
+                        </div>
+
+                        <div class="assessment-bar">
+
+                            <div class="assessment-fill"></div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="assessment-note">
+
+                        <i class="fas fa-lightbulb"></i>
+
+                        Continue taking assessments regularly to build
+                        a clearer picture of your emotional wellbeing.
+
+                    </div>
+
+                    <div class="assessment-buttons">
+
+                        <a href="{% url 'analytics' %}"
+
+                           class="assessment-btn">
+
+                            <i class="fas fa-chart-line me-2"></i>
+
+                            View Analytics
+
+                        </a>
+
+                        <a href="{% url 'chatbot' %}"
+
+                           class="assessment-btn secondary">
+
+                            <i class="fas fa-robot me-2"></i>
+
+                            Talk to AI
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% else %}
+
+        <div class="empty-assessment">
+
+            <i class="fas fa-heart-circle-plus"></i>
+
+            <h3>
+
+                No Assessments Yet
+
+            </h3>
+
+            <p>
+
+                Complete your first assessment to begin tracking
+                your mental wellness journey.
+
+            </p>
+
+            <a href="{% url 'survey' %}"
+
+               class="assessment-btn">
+
+                Start PHQ-9 Assessment
+
+            </a>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+<!-- ========================================================= -->
+<!-- END PART 5 -->
+<!-- ========================================================= -->
+
+
+<!-- ========================================================= -->
+<!-- PART 6 : ASSESSMENT HISTORY -->
+<!-- ========================================================= -->
+
+<section class="history-section">
+
+    <div class="container">
+
+        <div class="latest-header">
+
+            <!--<span class="latest-tag">
+
+                <i class="fas fa-clock-rotate-left me-2"></i>
+
+                Assessment History
+
+            </span>--> 
+
+            <h2>
+
+                Your Wellness
+                <span>Journey Timeline</span>
+
+            </h2>
+
+            <p>
+
+                Every assessment contributes to understanding your mental
+                wellness. Review your previous results below.
+
+            </p>
+
+        </div>
+
+        <div class="timeline">
+
+            {% for a in assessments %}
+
+            <div class="timeline-card">
+
+                <div class="timeline-icon">
+
+                    {% if a.test_type == "PHQ-9" %}
+
+                        <i class="fas fa-notes-medical"></i>
+
+                    {% else %}
+
+                        <i class="fas fa-brain"></i>
+
+                    {% endif %}
+
+                </div>
+
+                <div class="timeline-content">
+
+                    <div class="timeline-header">
+
+                        <div>
+
+                            <h4>
+
+                                {{ a.test_type }}
+
+                            </h4>
+
+                            <span class="timeline-date">
+
+                                <i class="fas fa-calendar-alt me-2"></i>
+
+                                {{ a.created_at|date:"d M Y" }}
+
+                            </span>
+
+                        </div>
+
+                        <span class="timeline-score">
+
+                            {{ a.total_score }}
+
+                        </span>
+
+                    </div>
+
+                    <div class="timeline-body">
+
+                        <div class="timeline-info">
+
+                            <label>Severity</label>
+
+                            <span class="timeline-badge">
+
+                                {{ a.severity }}
+
+                            </span>
+
+                        </div>
+
+                        <div class="timeline-info">
+
+                            <label>Assessment</label>
+
+                            <strong>{{ a.test_type }}</strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% empty %}
+
+            <div class="history-empty">
+
+                <i class="fas fa-folder-open"></i>
+
+                <h3>
+
+                    No Assessment History
+
+                </h3>
+
+                <p>
+
+                    Your completed assessments will appear here and form
+                    your wellness timeline.
+
+                </p>
+
+                <a href="{% url 'survey' %}"
+
+                   class="assessment-btn">
+
+                    Take First Assessment
+
+                </a>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ========================================================= -->
+<!-- END PART 6 -->
+<!-- ========================================================= -->
+
+
+<!-- ========================================================= -->
+<!-- PART 7 : AI WELLNESS RECOMMENDATION -->
+<!-- ========================================================= -->
+
+<section class="ai-section">
+
+    <div class="container">
+
+        <div class="ai-card">
+
+            <div class="row align-items-center">
+
+                <!-- LEFT SIDE -->
+
+                <div class="col-lg-8">
+
+                    <span class="ai-tag">
+
+                        <i class="fas fa-sparkles me-2"></i>
+
+                        AI Wellness Insight
+
+                    </span>
+
+                    <h2>
+
+                        Your Mental Wellness Companion
+                        is Here to Help
+
+                    </h2>
+
+                    <p>
+
+                        Based on your recent assessment history,
+                        maintaining a consistent wellness routine can
+                        significantly improve emotional resilience.
+                        Continue monitoring your progress and don't
+                        hesitate to talk with PsychAI whenever you
+                        need guidance or emotional support.
+
+                    </p>
+
+                    <div class="ai-highlights">
+
+                        <div class="highlight-box">
+
+                            <i class="fas fa-chart-line"></i>
+
+                            <div>
+
+                                <h5>Track Progress</h5>
+
+                                <span>Monitor improvements over time</span>
+
+                            </div>
+
+                        </div>
+
+                        <div class="highlight-box">
+
+                            <i class="fas fa-comments"></i>
+
+                            <div>
+
+                                <h5>AI Guidance</h5>
+
+                                <span>Private conversations anytime</span>
+
+                            </div>
+
+                        </div>
+
+                        <div class="highlight-box">
+
+                            <i class="fas fa-shield-heart"></i>
+
+                            <div>
+
+                                <h5>Healthy Habits</h5>
+
+                                <span>Small daily improvements matter</span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="ai-buttons">
+
+                        <a href="{% url 'chatbot' %}"
+
+                           class="ai-btn">
+
+                            <i class="fas fa-robot me-2"></i>
+
+                            Talk with PsychAI
+
+                        </a>
+
+                        <a href="{% url 'analytics' %}"
+
+                           class="ai-btn secondary">
+
+                            <i class="fas fa-chart-pie me-2"></i>
+
+                            View Analytics
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+                <!-- RIGHT SIDE -->
+
+                <div class="col-lg-4 text-center">
+
+                    <div class="ai-illustration">
+
+                        <div class="ai-circle">
+
+                            <i class="fas fa-brain"></i>
+
+                        </div>
+
+                        <div class="pulse-ring ring1"></div>
+
+                        <div class="pulse-ring ring2"></div>
+
+                        <div class="pulse-ring ring3"></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ========================================================= -->
+<!-- END PART 7 -->
+<!-- ========================================================= -->
+
+
+<!-- ========================================================= -->
+<!-- PART 8 : EMERGENCY SUPPORT -->
+<!-- ========================================================= -->
+
+<section class="emergency-section">
+
+    <div class="container">
+
+        <div class="emergency-card">
+
+            <div class="row align-items-center">
+
+                <div class="col-lg-8">
+
+                    <span class="emergency-tag">
+
+                        <i class="fas fa-heart-pulse me-2"></i>
+
+                        Emergency Support
+
+                    </span>
+
+                    <h2>
+
+                        Your Wellbeing Always Comes First
+
+                    </h2>
+
+                    <p>
+
+                        PsychAI is designed to support your mental wellness,
+                        but it is not a replacement for professional medical
+                        care. If you are experiencing severe emotional distress
+                        or believe you are in immediate danger, please seek
+                        professional assistance without delay.
+
+                    </p>
+
+                    <div class="emergency-actions">
+
+                        <a href="{% url 'consultation' %}"
+
+                           class="emergency-btn">
+
+                            <i class="fas fa-user-doctor me-2"></i>
+
+                            Professional Consultation
+
+                        </a>
+
+                        <a href="{% url 'chatbot' %}"
+
+                           class="emergency-btn secondary">
+
+                            <i class="fas fa-robot me-2"></i>
+
+                            Talk with PsychAI
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg-4">
+
+                    <div class="emergency-icon">
+
+                        <i class="fas fa-shield-heart"></i>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ========================================================= -->
+<!-- END PART 8 -->
+<!-- ========================================================= -->
+
+
+<!-- ========================================================= -->
+<!-- PART 9 : FOOTER -->
+<!-- ========================================================= -->
+
+<footer class="home-footer">
+
+    <div class="container">
+
+        <div class="row gy-5">
+
+            <!-- Brand -->
+
+            <div class="col-lg-4">
+
+                <div class="footer-brand">
+
+                    <div class="footer-logo">
+
+                        <i class="fas fa-brain"></i>
+
+                    </div>
+
+                    <h3>PsychAI</h3>
+
+                    <p>
+
+                        Your trusted AI-powered mental wellness companion.
+                        Track assessments, understand your emotional wellbeing,
+                        and receive supportive guidance in a secure environment.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <!-- Quick Links -->
+
+            <div class="col-lg-2 col-md-6">
+
+                <h5>Quick Links</h5>
+
+                <ul class="footer-links">
+
+                    <li><a href="{% url 'home' %}">Home</a></li>
+
+                    <li><a href="{% url 'survey' %}">PHQ-9</a></li>
+
+                    <li><a href="{% url 'bdisurvey' %}">BDI</a></li>
+
+                    <li><a href="{% url 'analytics' %}">Analytics</a></li>
+
+                </ul>
+
+            </div>
+
+            <!-- Services -->
+
+            <div class="col-lg-3 col-md-6">
+
+                <h5>Services</h5>
+
+                <ul class="footer-links">
+
+                    <li><a href="{% url 'chatbot' %}">AI Wellness Chat</a></li>
+
+                    <li><a href="{% url 'consultation' %}">Consultation</a></li>
+
+                    <li><a href="{% url 'analytics' %}">Progress Tracking</a></li>
+
+                    <li><a href="{% url 'survey' %}">Mental Assessment</a></li>
+
+                </ul>
+
+            </div>
+
+            <!-- Contact -->
+
+            <div class="col-lg-3">
+
+                <h5>Support</h5>
+
+                <ul class="footer-contact">
+
+                    <li>
+
+                        <i class="fas fa-envelope"></i>
+
+                        support@psychai.com
+
+                    </li>
+
+                    <li>
+
+                        <i class="fas fa-phone"></i>
+
+                        +91 98765 43210
+
+                    </li>
+
+                    <li>
+
+                        <i class="fas fa-location-dot"></i>
+
+                        Mental Wellness Center
+
+                    </li>
+
+                </ul>
+
+                <div class="footer-social">
+
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+
+                    <a href="#"><i class="fab fa-x-twitter"></i></a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <hr>
+
+        <div class="footer-bottom">
+
+            <p>
+
+                © {% now "Y" %} <strong>PsychAI</strong>.
+                All Rights Reserved.
+
+            </p>
+
+            <p>
+
+                Designed for Mental Wellness & Healthcare.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</footer>
+
+<!-- ========================================================= -->
+<!-- END PART 9 -->
+<!-- ========================================================= -->
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,183 @@
+/* ===========================
+   Consultation Theme
+=========================== */
+
+body{
+
+    background:#FBF6F8;
+
+    color:#2F254E;
+
+}
+
+/* Hero */
+
+.hero-card{
+
+    background:linear-gradient(
+        135deg,
+        #F7EEFF,
+        #FFF2F7
+    );
+
+    border-radius:34px;
+
+}
+
+.hero-card h1{
+
+    color:#2F254E;
+
+}
+
+.hero-card p{
+
+    color:#6E668B;
+
+}
+
+.hero-card i{
+
+    color:#9C7CFF;
+
+}
+
+/* Cards */
+
+.feature-card,
+.consultation-card{
+
+    background:#F8EEFE;
+
+    border-radius:30px;
+
+    border:none;
+
+    box-shadow:0 20px 50px rgba(177,145,222,.10);
+
+}
+
+/* Icons */
+
+.feature-icon{
+
+    color:#9C7CFF;
+
+}
+
+/* Section headings */
+
+.consultation-card h3,
+.consultation-card h5{
+
+    color:#9C7CFF;
+
+}
+
+/* Inputs */
+
+.form-control,
+.form-select{
+
+    border-radius:18px;
+
+    border:1px solid #EBDCF5;
+
+    background:white;
+
+}
+
+.form-control:focus,
+.form-select:focus{
+
+    border-color:#CFA6F5;
+
+    box-shadow:0 0 0 .2rem rgba(207,166,245,.18);
+
+}
+
+/* Privacy */
+
+.privacy-card{
+
+    background:#F8EEFE;
+
+    color:#2F254E;
+
+    border-left:6px solid #9C7CFF;
+
+}
+
+.privacy-card i{
+
+    color:#9C7CFF;
+
+}
+
+/* Button */
+
+.consultation-btn{
+
+    background:linear-gradient(
+        90deg,
+        #9C7CFF,
+        #E39ACB
+    );
+
+    color:white;
+
+    border:none;
+
+    border-radius:18px;
+
+}
+
+.consultation-btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 18px 35px rgba(177,145,222,.18);
+
+}
+
+/* Emergency */
+
+.emergency-card{
+
+    background:#FCECEF;
+
+    color:#8C475D;
+
+    border-left:6px solid #E39ACB;
+
+}
+
+/* Final Card */
+
+.encouragement-card{
+
+    background:linear-gradient(
+        135deg,
+        #9C7CFF,
+        #E39ACB
+    );
+
+    color:white;
+
+    border-radius:34px;
+
+}
+
+.encouragement-card hr{
+
+    border-color:rgba(255,255,255,.35);
+
+}
+
+/* Text */
+
+.text-muted{
+
+    color:#6E668B !important;
+
+}

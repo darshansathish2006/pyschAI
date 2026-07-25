@@ -1,106 +1,584 @@
-{% load static %}
+{% extends 'base.html' %}
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Analytics</title>
+{% block title %}
+Analytics
+{% endblock %}
 
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
-</head>
+{% block content %}
 
-<body class="bg-dark text-white">
+<div class="container py-5">
 
-<div class="container mt-5">
+<!-- Analytics Hero -->
 
-    <h1 class="mb-4">Assessment Analytics</h1>
+<section class="analytics-hero mb-5">
 
-    <div class="card bg-secondary mb-4">
-        <div class="card-body">
+    <div class="analytics-hero-card">
 
-            <h3>Total Assessments</h3>
+        <div class="analytics-glow analytics-glow-one"></div>
+        <div class="analytics-glow analytics-glow-two"></div>
 
-            <h2>{{ total_assessments }}</h2>
+        <div class="row align-items-center">
+
+            <div class="col-lg-7">
+
+                <span class="analytics-badge">
+
+                    <i class="fas fa-chart-line"></i>
+
+                    Wellness Analytics
+
+                </span>
+
+                <h1 class="analytics-title">
+
+                    Understand your
+
+                    <span>Mental Wellness Journey.</span>
+
+                </h1>
+
+                <p class="analytics-description">
+
+                    View your assessment history, monitor emotional progress,
+                    discover patterns over time and gain meaningful insights
+                    into your wellbeing through beautifully presented analytics.
+
+                </p>
+
+            </div>
+
+            <div class="col-lg-5">
+
+                <div class="analytics-summary">
+
+                    <h6>
+
+                        TODAY'S SUMMARY
+
+                    </h6>
+
+                    <div class="summary-score">
+
+                        {% if latest %}
+                            {{ latest.total_score }}
+                        {% else %}
+                            —
+                        {% endif %}
+
+                    </div>
+
+                    <small>
+
+                        Latest Assessment Score
+
+                    </small>
+
+                    <div class="summary-progress">
+
+                        <div class="summary-bar"></div>
+
+                    </div>
+
+                    <div class="summary-grid">
+
+                        <div>
+
+                            <small>Assessment</small>
+
+                            <strong>
+
+                                {% if latest %}
+
+                                    {{ latest.test_type }}
+
+                                {% else %}
+
+                                    —
+
+                                {% endif %}
+
+                            </strong>
+
+                        </div>
+
+                        <div>
+
+                            <small>Severity</small>
+
+                            <strong>
+
+                                {% if latest %}
+
+                                    {{ latest.severity }}
+
+                                {% else %}
+
+                                    —
+
+                                {% endif %}
+
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
 
         </div>
+
     </div>
 
-    <div class="card bg-secondary mb-4">
-        <div class="card-body">
+</section>
 
-            <h3>Latest Assessment</h3>
+    <!-- Analytics Statistics -->
 
-            {% if latest %}
+<section class="analytics-stats mb-5">
 
-                <p><strong>Test:</strong> {{ latest.test_type }}</p>
+    <div class="row g-4 justify-content-center align-items-stretch">
 
-                <p><strong>Score:</strong> {{ latest.total_score }}</p>
+        <div class="col-md-6 col-xl-3">
 
-                <p><strong>Severity:</strong> {{ latest.severity }}</p>
+            <div class="analytics-stat-card">
 
-                <p><strong>Date:</strong> {{ latest.created_at }}</p>
+                <div class="stat-icon lavender">
 
-            {% else %}
+                    <i class="fas fa-clipboard-list"></i>
 
-                <p>No assessments found.</p>
+                </div>
 
-            {% endif %}
+                <span class="stat-label">
+
+                    Total Assessments
+
+                </span>
+
+                <h2>
+
+                    {{ total_assessments }}
+
+                </h2>
+
+            </div>
 
         </div>
-    </div>
 
-    <div class="card bg-secondary mb-4">
-        <div class="card-body">
+        <div class="col-md-6 col-xl-3">
 
-            <h3>Average Score</h3>
+            <div class="analytics-stat-card">
 
-            <h2>{{ average_score }}</h2>
+                <div class="stat-icon mint">
 
-        </div>
-    </div>
+                    <i class="fas fa-chart-simple"></i>
 
-    <div class="card bg-secondary mb-4">
-        <div class="card-body">
+                </div>
 
-            <h3>Severity Distribution</h3>
+                <span class="stat-label">
 
-            <ul>
+                    Average Score
 
-                {% for severity, count in severity_counts.items %}
+                </span>
 
-                    <li>{{ severity }} : {{ count }}</li>
+                <h2>
 
-                {% endfor %}
+                    {{ average_score }}
 
-            </ul>
+                </h2>
+
+            </div>
 
         </div>
+
+        <div class="col-md-6 col-xl-3">
+
+            <div class="analytics-stat-card">
+
+                <div class="stat-icon blush">
+
+                    <i class="fas fa-heart"></i>
+
+                </div>
+
+                <span class="stat-label">
+
+                    Latest Result
+
+                </span>
+
+                <h4>
+
+                    {% if latest %}
+
+                        {{ latest.severity }}
+
+                    {% else %}
+
+                        —
+
+                    {% endif %}
+
+                </h4>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-6 col-xl-3">
+
+            <div class="analytics-stat-card">
+
+                <div class="stat-icon gold">
+
+                    <i class="fas fa-calendar-check"></i>
+
+                </div>
+
+                <span class="stat-label">
+
+                    Latest Score
+
+                </span>
+
+                <h2>
+
+                    {% if latest %}
+
+                        {{ latest.total_score }}
+
+                    {% else %}
+
+                        —
+
+                    {% endif %}
+
+                </h2>
+
+            </div>
+
+        </div>
+
     </div>
 
-    <div class="card bg-secondary mb-4">
-        <div class="card-body">
+</section>
 
-            <h3>Score Trend</h3>
+        <!-- Latest Assessment & Severity -->
+
+<section class="analytics-overview mb-5">
+
+    <div class="row g-4">
+
+        <!-- Latest Assessment -->
+
+        <div class="col-lg-7">
+
+            <div class="analytics-panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <span class="panel-tag">
+
+                            Latest Assessment
+
+                        </span>
+
+                        <h2>
+
+                            Your Most Recent Wellness Check
+
+                        </h2>
+
+                        <p>
+
+                            Review your latest mental wellness assessment.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                {% if latest %}
+
+                <div class="overview-grid">
+
+                    <div class="overview-item">
+
+                        <small>
+
+                            Assessment
+
+                        </small>
+
+                        <h4>
+
+                            {{ latest.test_type }}
+
+                        </h4>
+
+                    </div>
+
+                    <div class="overview-item">
+
+                        <small>
+
+                            Score
+
+                        </small>
+
+                        <h3>
+
+                            {{ latest.total_score }}
+
+                        </h3>
+
+                    </div>
+
+                    <div class="overview-item">
+
+                        <small>
+
+                            Severity
+
+                        </small>
+
+                        <span class="severity-pill">
+
+                            {{ latest.severity }}
+
+                        </span>
+
+                    </div>
+
+                    <div class="overview-item">
+
+                        <small>
+
+                            Assessment Date
+
+                        </small>
+
+                        <strong>
+
+                            {{ latest.created_at }}
+
+                        </strong>
+
+                    </div>
+
+                </div>
+
+                {% else %}
+
+                <div class="analytics-empty">
+
+                    <i class="fas fa-heart-circle-plus"></i>
+
+                    <h4>
+
+                        No assessments yet
+
+                    </h4>
+
+                    <p>
+
+                        Complete your first assessment to begin tracking your wellbeing.
+
+                    </p>
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+        <!-- Severity -->
+
+        <div class="col-lg-5">
+
+            <div class="analytics-panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <span class="panel-tag">
+
+                            Wellness Overview
+
+                        </span>
+
+                        <h2>
+
+                            Severity Distribution
+
+                        </h2>
+
+                        <p>
+
+                            Summary of all completed assessments.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                {% if severity_counts %}
+
+                    {% for severity,count in severity_counts.items %}
+
+                    <div class="severity-row">
+
+                        <span>
+
+                            {{ severity }}
+
+                        </span>
+
+                        <span class="severity-count">
+
+                            {{ count }}
+
+                        </span>
+
+                    </div>
+
+                    {% endfor %}
+
+                {% else %}
+
+                <div class="analytics-empty">
+
+                    <i class="fas fa-chart-pie"></i>
+
+                    <h4>
+
+                        No data available
+
+                    </h4>
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+        <!-- Score Trend -->
+
+<section class="analytics-chart-section mb-5">
+
+    <div class="analytics-chart-card">
+
+        <div class="chart-header">
+
+            <div>
+
+                <span class="panel-tag">
+
+                    Progress Analytics
+
+                </span>
+
+                <h2>
+
+                    Wellness Score Trend
+
+                </h2>
+
+                <p>
+
+                    Observe how your emotional wellbeing has evolved over time through previous assessments.
+
+                </p>
+
+            </div>
+
+            <div class="chart-icon">
+
+                <i class="fas fa-chart-line"></i>
+
+            </div>
+
+        </div>
+
+        <div class="chart-wrapper">
 
             <canvas id="scoreChart"></canvas>
 
         </div>
+
     </div>
 
-    <div class="card bg-secondary">
-        <div class="card-body">
+</section>
 
-            <h3>Assessment History</h3>
+    <!-- Assessment History -->
 
-            <table class="table table-light">
+<section class="analytics-history mb-5">
+
+    <div class="analytics-history-card">
+
+        <div class="history-header">
+
+            <div>
+
+                <span class="panel-tag">
+
+                    Assessment History
+
+                </span>
+
+                <h2>
+
+                    Your Wellness Timeline
+
+                </h2>
+
+                <p>
+
+                    Every completed assessment is stored here so you can easily monitor your mental wellness journey.
+
+                </p>
+
+            </div>
+
+            <div class="history-icon">
+
+                <i class="fas fa-clock-rotate-left"></i>
+
+            </div>
+
+        </div>
+
+        <div class="table-responsive">
+
+            <table class="analytics-table">
 
                 <thead>
+
                     <tr>
+
                         <th>Date</th>
-                        <th>Test</th>
+
+                        <th>Assessment</th>
+
                         <th>Score</th>
+
                         <th>Severity</th>
+
                     </tr>
+
                 </thead>
 
                 <tbody>
@@ -108,10 +586,67 @@
                 {% for assessment in assessments %}
 
                     <tr>
-                        <td>{{ assessment.created_at }}</td>
-                        <td>{{ assessment.test_type }}</td>
-                        <td>{{ assessment.total_score }}</td>
-                        <td>{{ assessment.severity }}</td>
+
+                        <td>
+
+                            {{ assessment.created_at }}
+
+                        </td>
+
+                        <td>
+
+                            {{ assessment.test_type }}
+
+                        </td>
+
+                        <td>
+
+                            <span class="score-pill">
+
+                                {{ assessment.total_score }}
+
+                            </span>
+
+                        </td>
+
+                        <td>
+
+                            <span class="severity-pill">
+
+                                {{ assessment.severity }}
+
+                            </span>
+
+                        </td>
+
+                    </tr>
+
+                {% empty %}
+
+                    <tr>
+
+                        <td colspan="4">
+
+                            <div class="analytics-empty">
+
+                                <i class="fas fa-folder-open"></i>
+
+                                <h4>
+
+                                    No assessment history
+
+                                </h4>
+
+                                <p>
+
+                                    Your completed assessments will appear here.
+
+                                </p>
+
+                            </div>
+
+                        </td>
+
                     </tr>
 
                 {% endfor %}
@@ -121,42 +656,226 @@
             </table>
 
         </div>
+
     </div>
 
-</div>
+</section>
+
+        <!-- Mental Wellness Insights -->
+
+<section class="wellness-banner mb-5">
+
+    <div class="wellness-banner-card">
+
+        <div class="banner-glow glow-left"></div>
+        <div class="banner-glow glow-right"></div>
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-8">
+
+                <span class="panel-tag">
+
+                    Mental Wellness
+
+                </span>
+
+                <h2>
+
+                    Every Assessment Helps You Understand Yourself Better
+
+                </h2>
+
+                <p>
+
+                    Tracking your emotional wellbeing over time helps identify
+                    patterns, celebrate progress, and recognize moments when
+                    additional care or professional guidance may be beneficial.
+
+                    These insights are designed to support your wellness journey
+                    and complement—not replace—professional clinical advice.
+
+                </p>
+
+                <div class="banner-features">
+
+                    <div>
+
+                        <i class="fas fa-check-circle"></i>
+
+                        Progress Tracking
+
+                    </div>
+
+                    <div>
+
+                        <i class="fas fa-check-circle"></i>
+
+                        Emotional Insights
+
+                    </div>
+
+                    <div>
+
+                        <i class="fas fa-check-circle"></i>
+
+                        Personalized Analytics
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-4 text-center">
+
+                <div class="banner-heart">
+
+                    <i class="fas fa-heart"></i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+{% endblock %}
+
+{% block extra_js %}
+
+{{ chart_labels|json_script:"chart-labels" }}
+{{ chart_scores|json_script:"chart-scores" }}
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
 
-const labels = [
-    {% for assessment in assessments %}
-        "{{ assessment.created_at|date:'d M' }}",
-    {% endfor %}
-];
+const labels = JSON.parse(
+    document.getElementById("chart-labels").textContent
+);
 
-const scores = [
-    {% for assessment in assessments %}
-        {{ assessment.total_score }},
-    {% endfor %}
-];
+const scores = JSON.parse(
+    document.getElementById("chart-scores").textContent
+);
 
 new Chart(
-    document.getElementById('scoreChart'),
+    document.getElementById("scoreChart"),
     {
-        type: 'line',
+        type: "line",
+
         data: {
+
             labels: labels,
-            datasets: [{
-                label: 'Assessment Score',
-                data: scores,
-                tension: 0.3
-            }]
+
+            datasets: [
+
+                {
+
+                    label: "Assessment Score",
+
+                    data: scores,
+
+                    borderColor: "#9B7CF3",
+
+                    backgroundColor: "rgba(155,124,243,.16)",
+
+                    borderWidth: 4,
+
+                    pointRadius: 6,
+
+                    pointHoverRadius: 9,
+
+                    fill: true,
+
+                    pointBackgroundColor:"#FFFFFF",
+
+                    pointBorderColor:"#9B7CF3",
+
+                    pointBorderWidth:3,
+
+                    tension: 0.35
+
+                }
+
+            ]
+
+        },
+
+        options: {
+
+            responsive: true,
+
+            maintainAspectRatio: false,
+
+            plugins:{
+
+    legend:{
+
+        labels:{
+
+            color:"#6D6587",
+
+            font:{
+
+                size:14,
+
+                weight:"600"
+
+            }
+
         }
+
     }
+
+},
+
+            scales:{
+
+    x:{
+
+        grid:{
+
+            display:false
+
+        },
+
+        ticks:{
+
+            color:"#8C83A7"
+
+        }
+
+    },
+
+    y:{
+
+        beginAtZero:true,
+
+        ticks:{
+
+            color:"#8C83A7"
+
+        },
+
+        grid:{
+
+            color:"rgba(185,140,246,.12)"
+
+        }
+
+    }
+
+}
+
+        }
+
+    }
+
 );
 
 </script>
 
-</body>
-</html>
+{% endblock %}

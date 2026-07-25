@@ -1,0 +1,377 @@
+/* ==========================================
+   PsychAI - BDI Theme
+   ========================================== */
+
+/* ---------- Page ---------- */
+
+body{
+
+    background:#FBF6F8;
+
+    color:#2F254E;
+
+    font-family:'Poppins',sans-serif;
+
+}
+
+/* ==========================================
+   Main BDI Wrapper
+========================================== */
+
+.bdi-wrapper{
+
+    width:100%;
+
+    max-width:900px;
+
+    margin:0 auto;
+
+}
+
+/* ---------- Hero ---------- */
+
+.hero-card{
+
+    background:linear-gradient(
+        135deg,
+        #F7EEFF,
+        #FFF4F8
+    );
+
+    border:none;
+
+    border-radius:36px;
+
+    max-width:900px;
+
+    margin:0 auto 45px;
+
+    box-shadow:0 22px 55px rgba(177,145,222,.10);
+
+}
+
+.hero-title{
+
+    color:#2F254E;
+
+    font-weight:700;
+
+}
+
+.hero-text{
+
+    color:#6E668B;
+
+}
+
+.hero-icon{
+
+    color:#9C7CFF;
+
+}
+
+/* ---------- Information Cards ---------- */
+
+.feature-card{
+
+    background:#F8EEFE;
+
+    border:none;
+
+    border-radius:28px;
+
+    box-shadow:0 18px 45px rgba(177,145,222,.08);
+
+    transition:.35s;
+
+}
+
+.feature-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 24px 60px rgba(177,145,222,.14);
+
+}
+
+/* ---------- Titles ---------- */
+
+.section-title{
+
+    color:#9C7CFF;
+
+    font-weight:700;
+
+}
+
+/* ---------- Disclaimer ---------- */
+
+.pastel-warning{
+
+    background:#FFF3F7;
+
+    border-left:6px solid #E39ACB;
+
+    border-radius:22px;
+
+    padding:25px;
+
+    color:#8C475D;
+
+}
+
+/* ==========================================
+   Assessment Form
+   ========================================== */
+
+/* ---------- Progress ---------- */
+
+.progress{
+
+    max-width:900px;
+
+    height:14px;
+
+    margin:0 auto 45px;
+
+    border-radius:40px;
+
+    overflow:hidden;
+
+    background:#EFDFF8;
+
+}
+
+.pastel-progress{
+
+    background:linear-gradient(
+        90deg,
+        #9C7CFF,
+        #E39ACB
+    );
+
+}
+
+/* ---------- Question Card ---------- */
+
+.pastel-question{
+
+    background:#FCEFF6;
+
+    border:none;
+
+    border-radius:34px;
+
+    padding:34px;
+
+    margin:0 auto 35px;
+
+    width:100%;
+
+    box-shadow:0 18px 45px rgba(177,145,222,.10);
+
+}
+
+.options{
+
+    margin-top:25px;
+
+}
+
+/* ---------- Radio Options ---------- */
+
+.form-check{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    background:white;
+
+    border:1px solid #EFE3F7;
+
+    border-radius:22px;
+
+    padding:18px 24px;
+
+    margin-bottom:16px;
+
+    transition:.3s;
+
+}
+
+.form-check:hover{
+
+    background:#FFF8FC;
+
+    transform:translateX(6px);
+
+}
+
+.form-check-input{
+
+    width:22px;
+
+    height:22px;
+
+    margin-top:3px;
+
+}
+
+.form-check-input:checked{
+
+    background:#9C7CFF;
+
+    border-color:#9C7CFF;
+
+}
+
+.form-check-label{
+
+    color:#2F254E;
+
+    margin-left:10px;
+
+    font-weight:500;
+
+}
+
+/* ---------- Text Area ---------- */
+
+.form-control{
+
+    margin-top:22px;
+
+    border-radius:20px;
+
+    border:1px solid #EBDCF5;
+
+    padding:18px;
+
+    background:white;
+
+}
+
+.form-control:focus{
+
+    border-color:#CFA6F5;
+
+    box-shadow:0 0 0 .2rem rgba(207,166,245,.18);
+
+}
+
+/* ---------- Consent ---------- */
+
+.consent-card{
+
+    background:#F8EEFE;
+
+    border-left:6px solid #9C7CFF;
+
+    border-radius:24px;
+
+    padding:30px;
+
+}
+
+/* ---------- Button ---------- */
+
+.pastel-btn{
+
+    min-width:300px;
+
+    background:linear-gradient(
+        90deg,
+        #9C7CFF,
+        #E39ACB
+    );
+
+    color:white;
+
+    border:none;
+
+    border-radius:20px;
+
+    padding:16px 40px;
+
+    font-size:18px;
+
+    font-weight:600;
+
+}
+
+.pastel-btn:hover{
+
+    color:white;
+
+    transform:translateY(-3px);
+
+    box-shadow:0 18px 35px rgba(177,145,222,.18);
+
+}
+
+/* ---------- Bootstrap Overrides ---------- */
+
+.text-primary{
+
+    color:#9C7CFF !important;
+
+}
+
+.btn-primary{
+
+    background:linear-gradient(
+        90deg,
+        #9C7CFF,
+        #E39ACB
+    ) !important;
+
+    border:none !important;
+
+}
+
+.btn-primary:hover{
+
+    background:linear-gradient(
+        90deg,
+        #8D6EF7,
+        #DB89BF
+    ) !important;
+
+}
+
+.alert-warning{
+
+    background:#FFF3F7;
+
+    color:#8C475D;
+
+    border:none;
+
+}
+
+/* ---------- Responsive ---------- */
+
+@media(max-width:768px){
+
+    .hero-card{
+
+        border-radius:24px;
+
+    }
+
+    .feature-card{
+
+        margin-bottom:20px;
+
+    }
+
+    .pastel-question{
+
+        padding:22px;
+
+    }
+
+}

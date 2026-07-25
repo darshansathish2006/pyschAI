@@ -1,163 +1,544 @@
+{% extends 'base.html' %}
+
 {% load crispy_forms_tags %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PHQ-9 Assessment</title>
 
-    <link rel="stylesheet" href="{% static 'css/surveyform.css' %}?v=1">
-</head>
+{% block title %}
+PHQ-9 Assessment
+{% endblock %}
 
-<body>
+{% block extra_css %}
 
-<div class="form_container">
+<link rel="stylesheet" href="{% static 'css/surveyform.css' %}?v=2">
 
-    <h2>PHQ-9 Assessment</h2>
+{% endblock %}
 
-    {% if error %}
-        <div class="error_box">{{ error }}</div>
-    {% endif %}
+{% block content %}
 
-    <p class="intro_text">
-        Over the last 2 weeks, how often have you been bothered by the following problems?
-    </p>
+<div class="container py-5">
 
-    <form method="POST">
-        {% csrf_token %}
+    <div class="form_container">
 
-        <!-- QUESTION TEMPLATE -->
-        <div class="question_box">
-            <p>1. Little interest or pleasure in doing things?</p>
-            <div class="options">
-                <label><input type="radio" name="q1" value="0" required> Not at all</label>
-                <label><input type="radio" name="q1" value="1"> Several days</label>
-                <label><input type="radio" name="q1" value="2"> More than half the days</label>
-                <label><input type="radio" name="q1" value="3"> Nearly every day</label>
-                <textarea name="q1_text" id="" placeholder="Describe your feelings..."></textarea>
-            </div>
-        </div>
+        <div class="card survey-header-card shadow-lg border-0 mb-5">
 
-        <div class="question_box">
-            <p>2. Feeling down, depressed, or hopeless</p>
-            <div class="options">
-                <label><input type="radio" name="q2" value="0" required> Not at all</label>
-                <label><input type="radio" name="q2" value="1"> Several days</label>
-                <label><input type="radio" name="q2" value="2"> More than half the days</label>
-                <label><input type="radio" name="q2" value="3"> Nearly every day</label>
-                <textarea name="q2_text" id="" placeholder="Describe your feelings..."></textarea>
-            </div>
-        </div>
+            <div class="card-body text-center p-5">
 
-        <div class="question_box">
-            <p>3. Trouble falling or staying asleep, or sleeping too much </p>
-            <div class="options">
-                <label><input type="radio" name="q3" value="0" required> Not at all</label>
-                <label><input type="radio" name="q3" value="1"> Several days</label>
-                <label><input type="radio" name="q3" value="2"> More than half the days</label>
-                <label><input type="radio" name="q3" value="3"> Nearly every day</label>
-                <textarea name="q3_text" id="" placeholder="Describe your feelings..."></textarea>
+                <i class="fas fa-heart-pulse survey-icon fa-4x mb-3"></i>
+
+                <h2 class="fw-bold survey-title">
+
+                    PHQ-9 Depression Assessment
+
+                </h2>
+
+                <p class="lead survey-subtitle">
+
+                    Over the last <strong>2 weeks</strong>, how often have you been bothered by the following problems?
+
+                </p>
 
             </div>
+
         </div>
 
-        <div class="question_box">
-            <p>4. Feeling tired or having little energy </p>
-            <div class="options">
-                <label><input type="radio" name="q4" value="0" required> Not at all</label>
-                <label><input type="radio" name="q4" value="1"> Several days</label>
-                <label><input type="radio" name="q4" value="2"> More than half the days</label>
-                <label><input type="radio" name="q4" value="3"> Nearly every day</label>
-                <textarea name="q4_text" id="" placeholder="Describe your feelings..."></textarea>
+        {% if error %}
+
+            <div class="alert alert-danger">
+
+                {{ error }}
 
             </div>
-        </div>
 
-        <div class="question_box">
-            <p>5. Poor appetite or overeating </p>
-            <div class="options">
-                <label><input type="radio" name="q5" value="0" required> Not at all</label>
-                <label><input type="radio" name="q5" value="1"> Several days</label>
-                <label><input type="radio" name="q5" value="2"> More than half the days</label>
-                <label><input type="radio" name="q5" value="3"> Nearly every day</label>
-                <textarea name="q5_text" id="" placeholder="Describe your feelings..."></textarea>
+        {% endif %}
 
-            </div>
-        </div>
+        <div class="progress survey-progress mb-5">
 
-        <div class="question_box">
-            <p>6. Feeling bad about yourself — or that you are a failure or 
-have let yourself or your family down </p>
-            <div class="options">
-                <label><input type="radio" name="q6" value="0" required> Not at all</label>
-                <label><input type="radio" name="q6" value="1"> Several days</label>
-                <label><input type="radio" name="q6" value="2"> More than half the days</label>
-                <label><input type="radio" name="q6" value="3"> Nearly every day</label>
-                <textarea name="q6_text" id="" placeholder="Describe your feelings..."></textarea>
+            <div class="progress-bar survey-progress-bar"
+                 style="width:100%;">
+
+                9 Questions
 
             </div>
+
         </div>
 
-        <div class="question_box">
-            <p>7. Trouble concentrating on things, such as reading the 
-newspaper or watching television </p>
-            <div class="options">
-                <label><input type="radio" name="q7" value="0" required> Not at all</label>
-                <label><input type="radio" name="q7" value="1"> Several days</label>
-                <label><input type="radio" name="q7" value="2"> More than half the days</label>
-                <label><input type="radio" name="q7" value="3"> Nearly every day</label>
-                <textarea name="q7_text" id="" placeholder="Describe your feelings..."></textarea>
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <!-- QUESTION 1 -->
+
+            <div class="question_box">
+
+                <h5 class="fw-bold question-title">
+
+                    1. Little interest or pleasure in doing things?
+
+                </h5>
+
+                <div class="options">
+
+                    <label class="form-check">
+                        <input class="form-check-input" type="radio" name="q1" value="0" required>
+                        <span class="form-check-label">Not at all</span>
+                    </label>
+
+                    <label class="form-check">
+                        <input class="form-check-input" type="radio" name="q1" value="1">
+                        <span class="form-check-label">Several days</span>
+                    </label>
+
+                    <label class="form-check">
+                        <input class="form-check-input" type="radio" name="q1" value="2">
+                        <span class="form-check-label">More than half the days</span>
+                    </label>
+
+                    <label class="form-check">
+                        <input class="form-check-input" type="radio" name="q1" value="3">
+                        <span class="form-check-label">Nearly every day</span>
+                    </label>
+
+                    <textarea
+                        class="form-control mt-3"
+                        rows="3"
+                        name="q1_text"
+                        placeholder="Optional: Share more about how you've been feeling..."></textarea>
+
+                </div>
 
             </div>
-        </div>
 
-        <div class="question_box">
-            <p>8. Moving or speaking so slowly that other people could have 
-noticed?  Or the opposite — being so fidgety or restless 
-that you have been moving around a lot more than usual </p>
-            <div class="options">
-                <label><input type="radio" name="q8" value="0" required> Not at all</label>
-                <label><input type="radio" name="q8" value="1"> Several days</label>
-                <label><input type="radio" name="q8" value="2"> More than half the days</label>
-                <label><input type="radio" name="q8" value="3"> Nearly every day</label>
-                <textarea name="q8_text" id="" placeholder="Describe your feelings..."></textarea>
+            <div class="question-gap"></div>
+
+            <!-- QUESTION 2 -->
+
+            <div class="question_box">
+
+                <h5 class="fw-bold question-title">
+
+                    2. Feeling down, depressed, or hopeless
+
+                </h5>
+
+                <div class="options">
+
+                    <label class="form-check">
+                        <input class="form-check-input" type="radio" name="q2" value="0" required>
+                        <span class="form-check-label">Not at all</span>
+                    </label>
+
+                    <label class="form-check">
+                        <input class="form-check-input" type="radio" name="q2" value="1">
+                        <span class="form-check-label">Several days</span>
+                    </label>
+
+                    <label class="form-check">
+                        <input class="form-check-input" type="radio" name="q2" value="2">
+                        <span class="form-check-label">More than half the days</span>
+                    </label>
+
+                    <label class="form-check">
+                        <input class="form-check-input" type="radio" name="q2" value="3">
+                        <span class="form-check-label">Nearly every day</span>
+                    </label>
+
+                    <textarea
+                        class="form-control mt-3"
+                        rows="3"
+                        name="q2_text"
+                        placeholder="Optional: Share more about how you've been feeling..."></textarea>
+
+                </div>
 
             </div>
-        </div>
 
-        <div class="question_box">
-            <p>9. Thoughts that you would be better off dead or of hurting 
-yourself in some way </p>
-            <div class="options">
-                <label><input type="radio" name="q9" value="0" required> Not at all</label>
-                <label><input type="radio" name="q9" value="1"> Several days</label>
-                <label><input type="radio" name="q9" value="2"> More than half the days</label>
-                <label><input type="radio" name="q9" value="3"> Nearly every day</label>
-                <textarea name="q9_text" id="" placeholder="Describe your feelings..."></textarea>
+            <div class="question-gap"></div>
+
+            <!-- QUESTION 3 -->
+
+            <div class="question_box">
+
+                <h5 class="fw-bold question-title">
+
+                    3. Trouble falling or staying asleep, or sleeping too much
+
+                </h5>
+
+                <div class="options">
+
+                    <label class="form-check">
+                        <input class="form-check-input" type="radio" name="q3" value="0" required>
+                        <span class="form-check-label">Not at all</span>
+                    </label>
+
+                    <label class="form-check">
+                        <input class="form-check-input" type="radio" name="q3" value="1">
+                        <span class="form-check-label">Several days</span>
+                    </label>
+
+                    <label class="form-check">
+                        <input class="form-check-input" type="radio" name="q3" value="2">
+                        <span class="form-check-label">More than half the days</span>
+                    </label>
+
+                    <label class="form-check">
+                        <input class="form-check-input" type="radio" name="q3" value="3">
+                        <span class="form-check-label">Nearly every day</span>
+                    </label>
+
+                    <textarea
+                        class="form-control mt-3"
+                        rows="3"
+                        name="q3_text"
+                        placeholder="Optional: Share more about how you've been feeling..."></textarea>
+
+                </div>
 
             </div>
-        </div>
-        
 
+            <div class="question-gap"></div>
+                        <!-- QUESTION 4 -->
 
-        <!-- CONSENT -->
-        <div class="question_box">
-            <h4>Consent</h4>
-            <p>
-                I have read and understood the information above. I agree to participate voluntarily.
-            </p>
-            <div class="options">
-                <label><input type="radio" name="q10" value="0" required> I Agree</label>
-                <label><input type="radio" name="q10" value="1"> I Disagree</label>
+            <div class="question_box">
+
+                <h5 class="fw-bold question-title">
+
+                    4. Feeling tired or having little energy
+
+                </h5>
+
+                <div class="options">
+
+                    <label class="form-check">
+                        <input class="form-check-input" type="radio" name="q4" value="0" required>
+                        <span class="form-check-label">Not at all</span>
+                    </label>
+
+                    <label class="form-check">
+                        <input class="form-check-input" type="radio" name="q4" value="1">
+                        <span class="form-check-label">Several days</span>
+                    </label>
+
+                    <label class="form-check">
+                        <input class="form-check-input" type="radio" name="q4" value="2">
+                        <span class="form-check-label">More than half the days</span>
+                    </label>
+
+                    <label class="form-check">
+                        <input class="form-check-input" type="radio" name="q4" value="3">
+                        <span class="form-check-label">Nearly every day</span>
+                    </label>
+
+                    <textarea
+                        class="form-control mt-3"
+                        rows="3"
+                        name="q4_text"
+                        placeholder="Optional: Share more about how you've been feeling..."></textarea>
+
+                </div>
+
             </div>
-        </div>
 
-        <button type="submit" class="submit_btn">Submit Assessment</button>
+            <div class="question-gap"></div>
 
-    </form>
+            <!-- QUESTION 5 -->
+
+            <div class="question_box">
+
+                <h5 class="fw-bold question-title">
+
+                    5. Poor appetite or overeating
+
+                </h5>
+
+                <div class="options">
+
+                    <label class="form-check">
+                        <input class="form-check-input" type="radio" name="q5" value="0" required>
+                        <span class="form-check-label">Not at all</span>
+                    </label>
+
+                    <label class="form-check">
+                        <input class="form-check-input" type="radio" name="q5" value="1">
+                        <span class="form-check-label">Several days</span>
+                    </label>
+
+                    <label class="form-check">
+                        <input class="form-check-input" type="radio" name="q5" value="2">
+                        <span class="form-check-label">More than half the days</span>
+                    </label>
+
+                    <label class="form-check">
+                        <input class="form-check-input" type="radio" name="q5" value="3">
+                        <span class="form-check-label">Nearly every day</span>
+                    </label>
+
+                    <textarea
+                        class="form-control mt-3"
+                        rows="3"
+                        name="q5_text"
+                        placeholder="Optional: Share more about how you've been feeling..."></textarea>
+
+                </div>
+
+            </div>
+
+            <div class="question-gap"></div>
+
+            <!-- QUESTION 6 -->
+
+            <div class="question_box">
+
+                <h5 class="fw-bold question-title">
+
+                    6. Feeling bad about yourself — or that you are a failure or have let yourself or your family down
+
+                </h5>
+
+                <div class="options">
+
+                    <label class="form-check">
+                        <input class="form-check-input" type="radio" name="q6" value="0" required>
+                        <span class="form-check-label">Not at all</span>
+                    </label>
+
+                    <label class="form-check">
+                        <input class="form-check-input" type="radio" name="q6" value="1">
+                        <span class="form-check-label">Several days</span>
+                    </label>
+
+                    <label class="form-check">
+                        <input class="form-check-input" type="radio" name="q6" value="2">
+                        <span class="form-check-label">More than half the days</span>
+                    </label>
+
+                    <label class="form-check">
+                        <input class="form-check-input" type="radio" name="q6" value="3">
+                        <span class="form-check-label">Nearly every day</span>
+                    </label>
+
+                    <textarea
+                        class="form-control mt-3"
+                        rows="3"
+                        name="q6_text"
+                        placeholder="Optional: Share more about how you've been feeling..."></textarea>
+
+                </div>
+
+            </div>
+
+            <div class="question-gap"></div>
+                        <!-- QUESTION 7 -->
+
+            <div class="question_box">
+
+                <h5 class="fw-bold question-title">
+
+                    7. Trouble concentrating on things, such as reading the newspaper or watching television
+
+                </h5>
+
+                <div class="options">
+
+                    <label class="form-check">
+                        <input class="form-check-input" type="radio" name="q7" value="0" required>
+                        <span class="form-check-label">Not at all</span>
+                    </label>
+
+                    <label class="form-check">
+                        <input class="form-check-input" type="radio" name="q7" value="1">
+                        <span class="form-check-label">Several days</span>
+                    </label>
+
+                    <label class="form-check">
+                        <input class="form-check-input" type="radio" name="q7" value="2">
+                        <span class="form-check-label">More than half the days</span>
+                    </label>
+
+                    <label class="form-check">
+                        <input class="form-check-input" type="radio" name="q7" value="3">
+                        <span class="form-check-label">Nearly every day</span>
+                    </label>
+
+                    <textarea
+                        class="form-control mt-3"
+                        rows="3"
+                        name="q7_text"
+                        placeholder="Optional: Share more about how you've been feeling..."></textarea>
+
+                </div>
+
+            </div>
+
+            <div class="question-gap"></div>
+
+            <!-- QUESTION 8 -->
+
+            <div class="question_box">
+
+                <h5 class="fw-bold question-title">
+
+                    8. Moving or speaking so slowly that other people could have noticed? Or the opposite — being so fidgety or restless that you have been moving around a lot more than usual
+
+                </h5>
+
+                <div class="options">
+
+                    <label class="form-check">
+                        <input class="form-check-input" type="radio" name="q8" value="0" required>
+                        <span class="form-check-label">Not at all</span>
+                    </label>
+
+                    <label class="form-check">
+                        <input class="form-check-input" type="radio" name="q8" value="1">
+                        <span class="form-check-label">Several days</span>
+                    </label>
+
+                    <label class="form-check">
+                        <input class="form-check-input" type="radio" name="q8" value="2">
+                        <span class="form-check-label">More than half the days</span>
+                    </label>
+
+                    <label class="form-check">
+                        <input class="form-check-input" type="radio" name="q8" value="3">
+                        <span class="form-check-label">Nearly every day</span>
+                    </label>
+
+                    <textarea
+                        class="form-control mt-3"
+                        rows="3"
+                        name="q8_text"
+                        placeholder="Optional: Share more about how you've been feeling..."></textarea>
+
+                </div>
+
+            </div>
+
+            <div class="question-gap"></div>
+
+            <!-- QUESTION 9 -->
+
+            <div class="question_box">
+
+                <h5 class="fw-bold question-title">
+
+                    9. Thoughts that you would be better off dead or of hurting yourself in some way
+
+                </h5>
+
+                <div class="alert alert-warning mb-3">
+
+                    Please answer honestly. If these thoughts are frequent or distressing, consider reaching out to a trusted person or a qualified mental health professional.
+
+                </div>
+
+                <div class="options">
+
+                    <label class="form-check">
+                        <input class="form-check-input" type="radio" name="q9" value="0" required>
+                        <span class="form-check-label">Not at all</span>
+                    </label>
+
+                    <label class="form-check">
+                        <input class="form-check-input" type="radio" name="q9" value="1">
+                        <span class="form-check-label">Several days</span>
+                    </label>
+
+                    <label class="form-check">
+                        <input class="form-check-input" type="radio" name="q9" value="2">
+                        <span class="form-check-label">More than half the days</span>
+                    </label>
+
+                    <label class="form-check">
+                        <input class="form-check-input" type="radio" name="q9" value="3">
+                        <span class="form-check-label">Nearly every day</span>
+                    </label>
+
+                    <textarea
+                        class="form-control mt-3"
+                        rows="3"
+                        name="q9_text"
+                        placeholder="Optional: Share more about how you've been feeling..."></textarea>
+
+                </div>
+
+            </div>
+
+            <hr class="my-5">
+
+            <!-- CONSENT -->
+
+            <div class="question_box">
+
+                <h4 class="fw-bold mb-3 consent-title">
+
+                    <i class="fas fa-file-signature me-2"></i>
+
+                    Consent
+
+                </h4>
+
+                <p class="consent-text"> 
+
+                    I confirm that I have read and understood the purpose of this assessment. I understand that this questionnaire is intended for educational and self-reflection purposes and does not replace professional medical advice, diagnosis, or treatment. I voluntarily agree to participate.
+
+                </p>
+
+                <div class="options mt-3">
+
+                    <label class="form-check">
+
+                        <input class="form-check-input"
+                               type="radio"
+                               name="q10"
+                               value="0"
+                               required>
+
+                        <span class="form-check-label">
+
+                            I Agree
+
+                        </span>
+
+                    </label>
+
+                    <label class="form-check">
+
+                        <input class="form-check-input"
+                               type="radio"
+                               name="q10"
+                               value="1">
+
+                        <span class="form-check-label">
+
+                            I Disagree
+
+                        </span>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+            <div class="text-center mt-5">
+
+                <button
+                    type="submit"
+                    class="btn btn-primary survey-submit-btn btn-lg px-5">
+
+                    <i class="fas fa-paper-plane me-2"></i>
+
+                    Submit Assessment
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
 
 </div>
 
-</body>
-</html>
+{% endblock %}

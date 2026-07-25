@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Beck Depression Inventory
+{% endblock %}
+
+{% block extra_css %}
+
+<link rel="stylesheet"
+      href="{% static 'css/bdi.css' %}?v=1">
+
+{% endblock %}
+
+{% block content %}
+
+<section class="container py-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-10">
+
+            <div class="card hero-card shadow-lg border-0">
+
+                <div class="card-body p-5">
+
+                    <div class="text-center mb-5">
+
+                        <i class="fas fa-brain fa-5x hero-icon mb-4"></i>
+
+                        <h1 class="fw-bold hero-title">
+
+                            Beck Depression Inventory (BDI-II)
+
+                        </h1>
+
+                        <p class="lead hero-text">
+
+                            A widely used self-report questionnaire designed to measure the severity of depressive symptoms.
+
+                        </p>
+
+                    </div>
+
+                    <div class="row g-4">
+
+                        <div class="col-md-6">
+
+                            <div class="card feature-card h-100">
+
+                                <div class="card-body">
+
+                                    <h4 class="section-title">
+
+                                        <i class="fas fa-circle-info me-2"></i>
+
+                                        About BDI
+
+                                    </h4>
+
+                                    <p>
+
+                                        The Beck Depression Inventory consists of 21 questions that help evaluate emotional, cognitive, and physical symptoms associated with depression.
+
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <div class="card feature-card h-100">
+
+                                <div class="card-body">
+
+                                    <h4 class="section-title">
+
+                                        <i class="fas fa-list-check me-2"></i>
+
+                                        Instructions
+
+                                    </h4>
+
+                                    <ul>
+
+                                        <li>Answer every question honestly.</li>
+
+                                        <li>Select the option that best describes you.</li>
+
+                                        <li>Consider how you have felt during the past two weeks.</li>
+
+                                        <li>Estimated time: 5–10 minutes.</li>
+
+                                    </ul>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="pastel-warning mt-5">
+
+                        <strong>Disclaimer:</strong>
+
+                        This assessment is intended for educational and self-reflection purposes only. It should not be used as a substitute for diagnosis or treatment by a qualified mental health professional.
+
+                    </div>
+
+                    <div class="text-center mt-5">
+
+                        <a href="{% url 'bdiform' %}"
+                           class="btn pastel-btn btn-lg px-5">
+
+                            Start BDI Assessment
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

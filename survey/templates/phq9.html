@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+
+{% block title %}
+PHQ-9 Depression Assessment
+{% endblock %}
+
+{% block content %}
+
+<section class="container py-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-10">
+
+            <div class="card shadow-lg border-0">
+
+                <div class="card-body p-5">
+
+                    <div class="text-center mb-5">
+
+                        <i class="fas fa-heart-pulse fa-5x text-primary mb-4"></i>
+
+                        <h1 class="fw-bold">
+                            PHQ-9 Depression Assessment
+                        </h1>
+
+                        <p class="lead text-muted">
+                            A clinically validated questionnaire that helps identify symptoms of depression experienced during the last two weeks.
+                        </p>
+
+                    </div>
+
+                    <div class="row g-4">
+
+                        <div class="col-md-6">
+
+                            <div class="card h-100">
+
+                                <div class="card-body">
+
+                                    <h4 class="text-primary">
+
+                                        <i class="fas fa-circle-info me-2"></i>
+
+                                        About This Assessment
+
+                                    </h4>
+
+                                    <p>
+
+                                        The Patient Health Questionnaire-9 (PHQ-9) is widely used by healthcare professionals to screen for depression.
+
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <div class="card h-100">
+
+                                <div class="card-body">
+
+                                    <h4 class="text-primary">
+
+                                        <i class="fas fa-list-check me-2"></i>
+
+                                        Instructions
+
+                                    </h4>
+
+                                    <ul>
+
+                                        <li>Answer honestly.</li>
+
+                                        <li>Think about the last two weeks.</li>
+
+                                        <li>Choose one option for every question.</li>
+
+                                        <li>Completion time: 2–3 minutes.</li>
+
+                                    </ul>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="alert alert-warning mt-5">
+
+                        <strong>Disclaimer:</strong>
+
+                        This questionnaire is a screening tool and is not intended to replace professional medical advice.
+
+                    </div>
+
+                    <div class="text-center mt-5">
+
+                        <a href="{% url 'surveyform' %}"
+                           class="btn btn-primary btn-lg px-5">
+
+                            Start PHQ-9 Assessment
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

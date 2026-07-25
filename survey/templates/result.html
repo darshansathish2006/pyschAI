@@ -1,70 +1,375 @@
+{% extends 'base.html' %}
+
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assessment Result</title>
 
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+{% block title %}
+Assessment Result
+{% endblock %}
 
-    <link rel="stylesheet"
-          href="{% static 'css/result.css' %}?v=2">
-</head>
+{% block extra_css %}
 
-<body>
+<link rel="stylesheet"
+      href="{% static 'css/result.css' %}?v=5">
 
-<div class="container main">
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
 
     <div class="result_container">
 
-        <h2>Your Score: {{ score }}</h2>
+        <!-- Hero Section -->
 
-        <h3>Assessment Result: {{ level }}</h3>
+        <div class="card shadow-lg border-0 mb-5">
 
-        <hr>
+            <div class="card-body text-center p-5">
 
-        {% if ml_prediction %}
-            <h3>AI Prediction: {{ ml_prediction }}</h3>
+                <div class="mb-4">
 
-            <p style="color:rgb(255,213,0);">
-                This is not a medical diagnosis. Please consult a professional.
-            </p>
+                    <i class="fas fa-circle-check fa-5x success-icon"></i>
 
-            {% if level != ml_prediction %}
-                <p style="color:orange;font-weight:bold;">
-                    ⚠️ AI and questionnaire results differ.
-                    Further evaluation may be helpful.
+                </div>
+
+                <h1 class="fw-bold result-title">
+
+                    Assessment Successfully Completed
+
+                </h1>
+
+                <p class="lead text-muted mt-3">
+
+                    Thank you for completing your mental wellness assessment.
+                    Your responses have been analyzed and a personalized
+                    summary is provided below.
+
                 </p>
-            {% endif %}
-        {% endif %}
-
-        <div class="ai_companion_container">
-
-            <h3>AI Companion Message</h3>
-
-            <div class="ai_message">
-
-                {{ ai_message|linebreaks }}
 
             </div>
 
         </div>
 
-        <div class="action_buttons">
+        <!-- Score Card -->
 
-            <a href="{% url 'home' %}" class="btn btn-primary">
-                Dashboard
-            </a>
+        <div class="card shadow-sm border-0 mb-5">
 
-            <a href="{% url 'analytics' %}" class="btn btn-success">
-                Analytics
-            </a>
+            <div class="card-body text-center py-5">
 
-            <a href="{% url 'chatbot' %}" class="btn btn-info">
-                Talk to AI Companion
-            </a>
+                <h6 class="text-uppercase text-muted mb-2">
+
+                    Assessment Score
+
+                </h6>
+
+                <h1 class="display-1 fw-bold score-number">
+
+                    {{ score }}
+
+                </h1>
+
+                <div class="mt-4">
+
+                    <h5 class="text-muted mb-3">
+
+                        Assessment Category
+
+                    </h5>
+
+                    <span class="badge assessment-badge fs-5 px-4 py-3">
+
+                        {{ level }}
+
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+                <!-- AI Prediction -->
+
+        {% if ml_prediction %}
+
+        <div class="card shadow-sm border-0 mb-5">
+
+            <div class="card-body p-4">
+
+                <div class="d-flex align-items-center mb-4">
+
+                    <div class="me-3">
+
+                        <i class="fas fa-brain fa-3x purple-icon"></i>
+
+                    </div>
+
+                    <div>
+
+                        <h3 class="fw-bold section-heading mb-1"> 
+
+                            AI Prediction
+
+                        </h3>
+
+                        <p class="text-muted mb-0">
+
+                            AI-assisted interpretation based on your assessment responses.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="text-center my-4">
+
+                    <span class="badge prediction-badge fs-5 px-4 py-3">
+
+                        {{ ml_prediction }}
+
+                    </span>
+
+                </div>
+
+                <div class="alert alert-warning border-0">
+
+                    <i class="fas fa-triangle-exclamation me-2"></i>
+
+                    <strong>Important:</strong>
+                    This AI prediction is intended to provide additional insight
+                    and should not be considered a medical diagnosis.
+
+                </div>
+
+                {% if level != ml_prediction %}
+
+                <div class="alert alert-danger border-0 mt-3">
+
+                    <h5 class="fw-bold">
+
+                        <i class="fas fa-circle-exclamation me-2"></i>
+
+                        Assessment Difference Detected
+
+                    </h5>
+
+                    <p class="mb-0">
+
+                        The AI prediction differs from your questionnaire result.
+                        This can happen because AI evaluates response patterns
+                        differently from traditional scoring methods.
+
+                        We recommend consulting a qualified mental health
+                        professional for a comprehensive evaluation.
+
+                    </p>
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+
+
+        <!-- AI Companion Message -->
+
+        <div class="card shadow-sm border-0 mb-5">
+
+            <div class="card-body p-4">
+
+                <div class="d-flex align-items-center mb-4">
+
+                    <div class="me-3">
+
+                        <i class="fas fa-heart fa-3x pink-icon"></i>
+
+                    </div>
+
+                    <div>
+
+                        <h3 class="fw-bold section-heading mb-1"> 
+
+                            AI Companion Message
+
+                        </h3>
+
+                        <p class="text-muted mb-0">
+
+                            A personalized message based on your assessment.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="ai_message rounded-4 p-4">
+
+                    {{ ai_message|linebreaks }}
+
+                </div>
+
+            </div>
+
+        </div>
+                <!-- What's Next -->
+
+        <div class="text-center mb-5">
+
+            <h2 class="fw-bold text-primary">
+
+                What's Next?
+
+            </h2>
+
+            <p class="text-muted">
+
+                Continue your mental wellness journey using the resources below.
+
+            </p>
+
+        </div>
+
+        <!-- Quick Actions -->
+
+        <div class="row g-4 mb-5">
+
+            <div class="col-md-6 col-lg-3">
+
+                <a href="{% url 'home' %}"
+                   class="btn action-btn btn-lg w-100 py-3">
+
+                    <i class="fas fa-house fa-lg mb-2 d-block"></i>
+
+                    Dashboard
+
+                </a>
+
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+
+                <a href="{% url 'analytics' %}"
+                   class="btn action-btn btn-lg w-100 py-3">
+
+                    <i class="fas fa-chart-column fa-lg mb-2 d-block"></i>
+
+                    Analytics
+
+                </a>
+
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+
+                <a href="{% url 'chatbot' %}"
+                   class="btn action-btn btn-lg text-white w-100 py-3">
+
+                    <i class="fas fa-robot fa-lg mb-2 d-block"></i>
+
+                    AI Companion
+
+                </a>
+
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+
+                <a href="{% url 'consultation' %}"
+                   class="btn action-btn btn-lg w-100 py-3">
+
+                    <i class="fas fa-user-doctor fa-lg mb-2 d-block"></i>
+
+                    Consultation
+
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- Professional Reminder -->
+
+        <div class="card reminder-card border-0 shadow-sm mb-5">
+
+            <div class="card-body p-4">
+
+                <div class="d-flex align-items-start">
+
+                    <div class="me-3">
+
+                        <i class="fas fa-circle-info fa-2x purple-icon"></i>
+
+                    </div>
+
+                    <div>
+
+                        <h4 class="fw-bold text-primary">
+
+                            Important Reminder
+
+                        </h4>
+
+                        <p class="mb-0">
+
+                            Assessment scores provide an indication of your
+                            current mental wellbeing but should never replace a
+                            professional clinical evaluation.
+
+                            If your symptoms are persistent, worsening, or are
+                            affecting your daily life, please consult a licensed
+                            mental health professional as soon as possible.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+                <!-- Encouragement Card -->
+
+        <div class="card encouragement-card"> 
+
+            <div class="card-body text-center py-5">
+
+                <div class="mb-4">
+
+                    <i class="fas fa-heart-circle-check fa-4x"></i>
+
+                </div>
+
+                <h2 class="fw-bold mb-3">
+
+                    Every Step Towards Better Mental Health Matters
+
+                </h2>
+
+                <p class="lead mb-4">
+
+                    Taking this assessment is a positive step toward understanding
+                    your emotional wellbeing. Remember that seeking help is a sign
+                    of strength, not weakness.
+
+                </p>
+
+                <hr class="border-light opacity-50">
+
+                <p class="mb-0">
+
+                    Continue practicing self-care, maintain healthy daily habits,
+                    and don't hesitate to reach out to trusted friends, family,
+                    or mental health professionals whenever you need support.
+
+                </p>
+
+            </div>
 
         </div>
 
@@ -72,5 +377,4 @@
 
 </div>
 
-</body>
-</html>
+{% endblock %}

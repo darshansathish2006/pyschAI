@@ -1,102 +1,465 @@
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
+/* =====================================================
+   PHQ-9 Survey Form
+   ===================================================== */
 
-    background: linear-gradient(
-                    rgba(0, 0, 0, 0.85), 
-                    rgba(0, 0, 0, 0.75)
-                ),
-                url("/static/css/images/background/bg.jpg");
+body{
 
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background:#FBF6F8;
 
-    color: white;
+    color:#2F254E;
+
+}
+
+/* Main Container */
+
+.form_container{
+
+    max-width:900px;
+
+    margin:auto;
+
+}
+
+/* Header Card */
+
+.form_container .card{
+
+    background:linear-gradient(
+        135deg,
+        #F7EEFF,
+        #FFF2F6
+    );
+
+    border:none;
+
+    border-radius:32px;
+
+    box-shadow:0 20px 50px rgba(176,138,255,.12);
+
+}
+
+/* Progress Bar */
+
+.progress{
+
+    height:12px;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    background:#EEE5F8;
+
+}
+
+.progress-bar{
+
+    background:linear-gradient(
+        90deg,
+        #9C7CFF,
+        #E39ACB
+    );
+
+}
+
+/* Question Card */
+
+.question_box{
+
+    background:#F7E1E9;
+
+    border:1px solid #F0DFF6;
+
+    border-left:none;
+
+    border-radius:26px;
+
+    padding:34px;
+
+    box-shadow:0 18px 40px rgba(180,150,230,.12);
+
+    transition:.35s;
+
+}
+
+.question_box:hover{
+
+    background:#FBE9EF;
+
+    transform:translateY(-5px);
+
+    box-shadow:0 25px 50px rgba(190,150,240,.16);
+
+}
+
+.question_box h5{
+
+    color:#2F254E;
+
+    margin-bottom:22px;
+
+    line-height:1.5;
+
+    font-weight:700;
+
+}
+
+.question_box h4{
+
+    margin-bottom:18px;
+
+}
+
+/* Radio Options */
+
+.options{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+}
+
+.form-check{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:12px 16px;
+
+    border:1px solid #EBDCF5;
+
+
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    background:#FFFDFE;
+
+    border-radius:18px;
+
+}
+
+.form-check:hover{
+
+    background:#F8EEFF;
+
+    border-color:#C48CF2;
+
+}
+
+.form-check-input{
+
+    cursor:pointer;
+
+    transform:scale(1.2);
+
+}
+
+.form-check-label{
+
+    cursor:pointer;
+
+    width:100%;
+
+    font-size:16px;
+
+}
+
+/* Checked Option */
+
+.form-check-input:checked{
+
+    background:#9C7CFF;
+
+    border-color:#9C7CFF;
+
+}
+
+/* Textarea */
+
+textarea.form-control{
+
+    background:#FFFDFE;
+
+    border:1px solid #EBDCF5;
+
+    border-radius:18px;
+
+}
+
+textarea.form-control:focus{
+
+    border-color:#C48CF2;
+
+    box-shadow:0 0 0 .25rem rgba(196,140,242,.20);
+
+}
+
+/* Horizontal Divider */
+
+hr{
+
+    opacity:.15;
+
+}
+
+/* Alert */
+
+.alert{
+
+    border:none;
+
+    border-radius:20px;
+
+}
+
+/* Consent */
+
+.question_box p{
+
+    color:#555;
+
+    line-height:1.7;
+
+}
+
+/* Submit Button */
+
+.btn-primary{
+
+    background:linear-gradient(
+        90deg,
+        #9C7CFF,
+        #E39ACB
+    );
+
+    border:none;
+
+    border-radius:50px;
+
+}
+
+.btn-primary:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 15px 35px rgba(195,120,220,.30);
+
+}
+
+/* Icons */
+
+.fa-heart-pulse{
+
+    color:#9C7CFF;
+
+}
+
+.fa-paper-plane{
+
+    font-size:17px;
+
+}
+
+/* Error Box */
+
+.alert-danger{
+
+    background:#FFECEC;
+
+    border-left:5px solid #F16A8D;
+
+}
+
+/* Question 9 Warning */
+
+.alert-warning{
+
+    background:#FFF5E8;
+
+    border-left:5px solid #F5B84C;
+
+}
+
+/* Responsive */
+
+@media(max-width:992px){
+
+    .form_container{
+
+        padding:0 10px;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .question_box{
+
+        padding:22px;
+
+    }
+
+    .question_box h5{
+
+        font-size:18px;
+
+    }
+
+    .btn-primary{
+
+        width:100%;
+
+    }
+
+}
+
+@media(max-width:576px){
+
+    .card-body{
+
+        padding:30px 20px !important;
+
+    }
+
+    .question_box{
+
+        padding:18px;
+
+    }
+
+    .form-check{
+
+        padding:10px;
+
+    }
+
+    .form-check-label{
+
+        font-size:15px;
+
+    }
+
+    textarea.form-control{
+
+        min-height:80px;
+
+    }
+
 }
 
 
-.form_container {
-    max-width: 900px;
-    margin: 50px auto;
-    padding: 30px;
+.consent-title{
 
-    border-radius: 20px;
-    background-color: rgba(82, 158, 154, 0.9);
+    color:#2F254E;
 
-    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.6);
+    font-size:1.7rem;
+
+}
+
+.consent-text{
+
+    color:#6E668B;
+
+    line-height:1.8;
+
 }
 
 
-h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: black;
+.survey-header-card{
+
+    background:linear-gradient(
+        135deg,
+        #F7EEFF,
+        #FFF2F6
+    );
+
+    border:none;
+
+    border-radius:34px;
+
+    box-shadow:0 20px 50px rgba(176,138,255,.12);
+
 }
 
-.intro_text {
-    text-align: center;
-    margin-bottom: 30px;
+.survey-icon{
+
+    color:#9C7CFF;
+
 }
 
+.survey-title{
 
-.question_box {
-    margin-bottom: 25px;
-    padding: 15px;
+    color:#2F254E;
 
-    border-radius: 15px;
-    background-color: rgba(0, 0, 0, 0.4);
+    font-size:2.7rem;
+
+    font-weight:700;
+
 }
 
+.survey-subtitle{
 
-.options {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-top: 10px;
+    color:#6E668B;
+
 }
 
-.options label {
-    cursor: pointer;
-    padding: 5px;
-    border-radius: 5px;
-    transition: 0.2s;
+.survey-progress{
+
+    height:14px;
+
+    background:#EEE5F8;
+
+    border-radius:50px;
+
 }
 
-.options label:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+.survey-progress-bar{
+
+    background:linear-gradient(
+        90deg,
+        #9C7CFF,
+        #E39ACB
+    );
+
 }
 
+.question-title{
 
-input[type="radio"] {
-    margin-right: 8px;
+    color:#2F254E;
+
+    font-weight:700;
+
 }
 
+.survey-submit-btn{
 
-.submit_btn {
-    display: block;
-    margin: 30px auto 0;
+    padding:16px 50px;
 
-    padding: 12px 25px;
-    border: none;
+    border-radius:50px;
 
-    background-color: #0b3d3d;
-    color: white;
+    font-weight:600;
 
-    border-radius: 10px;
-    cursor: pointer;
+    background:linear-gradient(
+        90deg,
+        #9C7CFF,
+        #E39ACB
+    );
 
-    transition: 0.3s;
 }
 
-.submit_btn:hover {
-    background-color: #072b2b;
-    transform: translateY(-2px);
-}
+.question-gap{
 
+    height:30px;
 
-.error_box {
-    color: red;
-    text-align: center;
-    margin-bottom: 15px;
 }

@@ -416,12 +416,25 @@ def analytics(request):
         else:
             severity_counts[severity] = 1
 
+    chart_labels = [
+        assessment.created_at.strftime("%d %b")
+        for assessment in assessments
+    ]
+
+    chart_scores = [
+        assessment.total_score
+        for assessment in assessments
+    ]
+
     context = {
         'total_assessments': total_assessments,
         'latest': latest,
         'average_score': round(average_score, 2) if average_score else 0,
         'severity_counts': severity_counts,
         'assessments': assessments,
+
+        'chart_labels': chart_labels,
+        'chart_scores': chart_scores,
     }
 
     return render(

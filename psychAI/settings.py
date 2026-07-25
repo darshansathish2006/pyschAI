@@ -28,7 +28,7 @@ GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 SECRET_KEY = 'django-insecure-&ho@m4gb3m0q&3-dbpu&mk2(#hw&-p+qy@4tk1c2)yq^!6b+i0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG", "False") == "True"
+DEBUG = True
 ALLOWED_HOSTS = [
     "127.0.0.1",
     "localhost",
@@ -42,8 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.messages',
     'crispy_forms',
     'crispy_bootstrap5',
     'survey',

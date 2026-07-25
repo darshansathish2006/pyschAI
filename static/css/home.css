@@ -1,273 +1,1943 @@
-/* ------------------- Background ------------------- */
+/*==================================================
+  PsychAI Home Page
+  Part 1B.1
+  Hero Layout
+==================================================*/
+
+:root{
+
+    --primary:#B98CF6;
+    --secondary:#F3E8FF;
+    --accent:#D88DBA;
+
+    --dark:#2C2544;
+    --gray:#7C7295;
+    --light:#FCFAFF;
+
+    --white:#FFFFFF;
+
+    --shadow:0 15px 40px rgba(185,140,246,.15);
+
+    --radius:22px;
+
+}
 
 body{
-    margin:0;
-    font-family: "Segoe UI", sans-serif;
-    color:white;
 
-    background:
-    linear-gradient(rgba(5,15,25,0.75),
-                    rgba(5,15,25,0.75)),
-    url("/static/images/background/bg.jpg");
+    background:#FBF6F8;
+    background-color:#FBF6F8;
 
-    background-size:cover;
-    background-position:center;
-    background-attachment:fixed;
 }
 
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
+/*==================================================
+Dashboard Wrapper
+==================================================*/
 
-    background:url("/static/images/background/bg.jpg")
-    center/cover no-repeat;
+.dashboard-wrapper{
 
-    filter:blur(8px);
-    opacity:.35;
+    position:relative;
 
-    z-index:-1;
+    overflow:hidden;
+
+    background:#FBF6F8;
+
 }
 
-/* ---------------- Hero ---------------- */
+/*==================================================
+Hero Section
+==================================================*/
 
 .hero-section{
 
-    padding:40px;
+    position:relative;
 
-    border-radius:25px;
+    padding:90px 0 110px;
 
-    background:rgba(255,255,255,.08);
+    overflow:hidden;
 
-    backdrop-filter:blur(10px);
-
-    margin-bottom:40px;
-
-    border:1px solid rgba(255,255,255,.15);
+    background:transparent;
 
 }
 
-.hero-section h1{
+/*==================================================
+Background
+==================================================*/
 
-    font-size:42px;
+.hero-background{
+
+    display:none;
+
+}
+
+.blob{
+
+    position:absolute;
+
+    border-radius:50%;
+
+    filter:blur(70px);
+
+    opacity:.55;
+
+    animation:floating 8s ease-in-out infinite;
+
+}
+
+.blob-one{
+
+    width:420px;
+
+    height:420px;
+
+    background:#D4F6FF;
+
+    top:-120px;
+
+    left:-120px;
+
+}
+
+.blob-two{
+
+    width:350px;
+
+    height:350px;
+
+    background:#C6E7FF;
+
+    right:-80px;
+
+    top:80px;
+
+    animation-delay:2s;
+
+}
+
+.blob-three{
+
+    width:300px;
+
+    height:300px;
+
+    background:#E8D8FF;
+
+    bottom:-120px;
+
+    left:45%;
+
+    animation-delay:4s;
+
+}
+
+.hero-section .container{
+
+    position:relative;
+
+    z-index:5;
+
+}
+
+.hero-badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:12px 22px;
+
+    border-radius:50px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #F8F5FF,
+            #FBE8F5
+        );
+
+    border:1px solid #E8DAFF;
+
+    color:#8B5CF6;
+
+    font-size:.95rem;
 
     font-weight:700;
 
-    color:#74f4f7;
+}
+
+/*==================================================
+Heading
+==================================================*/
+
+.hero-title{
+
+    font-size:4.3rem;
+
+    font-weight:800;
+
+    line-height:1.08;
+
+    letter-spacing:-2px;
 
 }
 
-.hero-section p{
+.hero-title span{
 
-    color:#d8d8d8;
+    background:linear-gradient(
+        135deg,
+        #8B5CF6,
+        #D88DBA
+    );
 
-    font-size:18px;
-
-}
-
-/* ---------------- Cards ---------------- */
-
-.dashboard-card{
-
-    background:rgba(255,255,255,.08);
-
-    backdrop-filter:blur(10px);
-
-    border-radius:22px;
-
-    padding:25px;
-
-    border:1px solid rgba(255,255,255,.15);
-
-    height:100%;
-
-    transition:.3s;
-
-    box-shadow:0 10px 25px rgba(0,0,0,.25);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
 
 }
 
-.dashboard-card:hover{
+.hero-description{
 
-    transform:translateY(-6px);
+    max-width:520px;
 
-    box-shadow:0 15px 35px rgba(0,0,0,.35);
+    font-size:1.2rem;
+
+    line-height:2;
+
+    color:#7C7295;
 
 }
 
-.dashboard-card h3{
+/*==================================================
+Buttons
+==================================================*/
 
-    color:#74f4f7;
+.hero-buttons{
 
-    margin-bottom:15px;
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:18px;
+
+    margin-top:35px;
+
+}
+
+.hero-btn{
+
+    background:linear-gradient(
+        135deg,
+        #B98CF6,
+        #D88DBA
+    );
+
+    color:white;
+
+    border:none;
+
+    border-radius:50px;
+
+    padding:15px 32px;
 
     font-weight:700;
 
-}
+    box-shadow:0 15px 30px rgba(216,141,186,.28);
 
-.dashboard-card p{
-
-    color:#ececec;
-
-    line-height:1.6;
+    transition:.35s;
 
 }
 
-/* AI card */
+.hero-btn:hover{
 
-.ai-card{
+    background:linear-gradient(
+        135deg,
+        #AA76F1,
+        #CF7DAE
+    );
 
-    background:linear-gradient(135deg,#148d92,#0f5d68);
-
-}
-
-.ai-card h3{
+    transform:translateY(-4px);
 
     color:white;
 
 }
 
-/* ---------------- Buttons ---------------- */
+.hero-btn-outline{
 
-.btn{
+    background:white;
 
-    border-radius:12px;
+    border:2px solid #E8DAFF;
 
-    padding:10px;
+    color:#8B5CF6;
+
+    border-radius:50px;
+
+    padding:15px 32px;
+
+    font-weight:700;
+
+    transition:.35s;
+
+}
+
+.hero-btn-outline:hover{
+
+    background:linear-gradient(
+        135deg,
+        #F8F5FF,
+        #FBE8F5
+    );
+
+    border-color:#D8B5FF;
+
+    color:#8B5CF6;
+
+}
+
+/*==================================================
+Statistics
+==================================================*/
+
+.hero-stats{
+
+    display:flex;
+
+    gap:22px;
+
+    flex-wrap:wrap;
+
+    margin-top:60px;
+
+}
+
+.hero-stat-card{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    padding:22px 24px;
+
+    min-width:220px;
+
+    background:rgba(255,255,255,.82);
+
+    backdrop-filter:blur(14px);
+
+    border-radius:20px;
+
+    box-shadow:var(--shadow);
+
+    transition:.35s;
+
+}
+
+.hero-stat-card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.stat-icon{
+
+    width:62px;
+
+    height:62px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:18px;
+
+    background:linear-gradient(
+        135deg,
+        #B98CF6,
+        #D88DBA
+);
+
+    color:white;
+
+    font-size:22px;
+
+}
+
+.hero-stat-card h4{
+
+    margin:0;
+
+    font-size:1.1rem;
+
+    color:var(--dark);
+
+    font-weight:700;
+
+}
+
+.hero-stat-card p{
+
+    margin:4px 0 0;
+
+    color:var(--gray);
+
+    font-size:.95rem;
+
+}
+
+/*==================================================
+Floating Animation
+==================================================*/
+
+@keyframes floating{
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-25px);
+
+    }
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+
+}
+/*==================================================
+  PsychAI Home Page
+  Part 1B.2
+  Wellness Card + Responsive
+==================================================*/
+
+/*==================================================
+Wellness Card
+==================================================*/
+.wellness-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    padding:42px;
+
+    border-radius:34px;
+
+    background:linear-gradient(
+        180deg,
+        #FFFFFF,
+        #FDFBFF
+    );
+
+    border:1px solid #F3E8FF;
+
+    box-shadow:
+        0 20px 50px rgba(185,140,246,.10);
+
+    transition:.35s;
+
+}
+
+.wellness-card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.wellness-card::before{
+
+    content:none;
+
+}
+
+.wellness-card::after{
+
+    content:none;
+
+}
+
+/*==================================================
+Header
+==================================================*/
+
+.wellness-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+.mini-title{
+
+    display:block;
+
+    font-size:.75rem;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+    color:#8E7AAE;
+
+    font-weight:700;
+
+    margin-bottom:6px;
+
+}
+
+.wellness-header h3{
+
+    margin:0;
+
+    font-size:1.6rem;
+
+    font-weight:700;
+
+    color:#2C2544;
+
+}
+
+.pulse-circle{
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:linear-gradient(
+        135deg,
+        #B98CF6,
+        #D88DBA
+    );
+
+    color:white;
+
+    font-size:28px;
+
+    box-shadow:
+        0 15px 35px rgba(185,140,246,.35);
+
+    animation:pulseGlow 2.5s infinite;
+
+}
+
+/*==================================================
+Score
+==================================================*/
+
+.wellness-score{
+
+    margin:45px 0;
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+.wellness-score h1{
+
+    margin:0;
+
+    font-size:4.6rem;
+
+    line-height:1;
+
+    font-weight:800;
+
+    background:linear-gradient(
+        135deg,
+        #8B5CF6,
+        #D88DBA
+    );
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+    background-clip:text;
+
+}
+
+.wellness-score span{
+
+    display:block;
+
+    margin-top:12px;
+
+    color:#7C7295;
+
+    font-size:1rem;
+
+}
+
+/*==================================================
+Progress
+==================================================*/
+
+.progress-area{
+
+    position:relative;
+
+    z-index:2;
+
+    margin-bottom:35px;
+
+}
+
+.progress-label{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-bottom:12px;
+
+    color:#2C2544;
 
     font-weight:600;
 
 }
 
-.btn-primary{
+.custom-progress{
 
-    background:#159895;
+    width:100%;
 
-    border:none;
+    height:10px;
 
-}
+    background:#F3E8FF;
 
-.btn-primary:hover{
+    border-radius:30px;
 
-    background:#127d7a;
-
-}
-
-.btn-success{
-
-    background:#0f766e;
-
-    border:none;
+    overflow:hidden;
 
 }
 
-.btn-success:hover{
+.custom-progress-fill{
 
-    background:#0b5b55;
+    width:72%;
 
-}
+    height:100%;
 
-.btn-info{
+    border-radius:50px;
 
-    color:white;
+    background:
 
-    background:#2b9ed1;
-
-    border:none;
-
-}
-
-.btn-info:hover{
-
-    color:white;
-
-    background:#2382ad;
+        linear-gradient(
+            90deg,
+            #9B7AF5,
+            #D88DBA
+        );
 
 }
 
-.btn-light{
+/*==================================================
+Info Grid
+==================================================*/
 
-    font-weight:bold;
+.wellness-info{
 
-}
+    display:grid;
 
-/* ---------------- Table ---------------- */
+    grid-template-columns:repeat(2,1fr);
 
-.table{
+    gap:18px;
 
-    color:white;
+    position:relative;
 
-    margin-top:20px;
-
-}
-
-.table thead{
-
-    background:#148d92;
+    z-index:2;
 
 }
 
-.table th{
+.info-item{
 
-    color:white;
+    background:white;
 
-    border:none;
-
-}
-
-.table td{
-
-    border-color:rgba(255,255,255,.1);
-
-}
-
-.table tbody tr{
-
-    transition:.2s;
-
-}
-
-.table tbody tr:hover{
-
-    background:rgba(255,255,255,.08);
-
-}
-
-/* ---------------- Alert ---------------- */
-
-.alert{
+    border:1px solid rgba(232,218,255,.8);
 
     border-radius:20px;
 
-    font-size:15px;
+    padding:20px;
+
+    box-shadow:none;
 
 }
 
-/* ---------------- Responsive ---------------- */
+.info-item span{
+
+    display:block;
+
+    color:#8E7AAE;
+
+    font-size:.7rem;
+
+    margin-bottom:6px;
+
+}
+
+.info-item strong{
+
+    color:#2C2544;
+
+    font-size:1rem;
+
+}
+
+/*==================================================
+Analytics Button
+==================================================*/
+
+.view-analytics-btn{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    margin-top:36px;
+
+    height:56px;
+
+    border-radius:18px;
+
+    text-decoration:none;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #B98CF6,
+            #D88DBA
+        );
+
+    color:white;
+
+    font-weight:700;
+
+    transition:.35s;
+
+}
+
+.view-analytics-btn:hover{
+
+    background:linear-gradient(
+        135deg,
+        #AA76F1,
+        #CF7DAE
+    );
+
+    color:white;
+
+    transform:translateY(-3px);
+
+}
+
+/*==================================================
+Pulse Animation
+==================================================*/
+
+@keyframes pulseGlow{
+
+    0%{
+
+        transform:scale(1);
+
+        box-shadow:0 0 0 rgba(216,141,186,.30);
+
+    }
+
+    50%{
+
+        transform:scale(1.08);
+
+        box-shadow:0 0 35px rgba(74,144,226,.45);
+
+    }
+
+    100%{
+
+        transform:scale(1);
+
+        box-shadow:0 0 0 rgba(74,144,226,.30);
+
+    }
+
+}
+
+/*==================================================
+Responsive
+==================================================*/
+
+@media(max-width:1200px){
+
+    .hero-title{
+
+        font-size:3rem;
+
+    }
+
+}
 
 @media(max-width:992px){
 
-.hero-section h1{
+    .hero-section{
 
-    font-size:32px;
+        padding:60px 0;
+
+    }
+
+    .hero-title{
+
+        font-size:2.6rem;
+
+    }
+
+    .hero-description{
+
+        max-width:100%;
+
+    }
+
+    .wellness-card{
+
+        margin-top:50px;
+
+    }
+
+    .hero-stats{
+
+        justify-content:center;
+
+    }
 
 }
 
-.dashboard-card{
+@media(max-width:768px){
 
-    margin-bottom:20px;
+    .hero-title{
+
+        font-size:2.2rem;
+
+        text-align:center;
+
+    }
+
+    .hero-description{
+
+        text-align:center;
+
+    }
+
+    .hero-buttons{
+
+        justify-content:center;
+
+    }
+
+    .hero-badge{
+
+        display:flex;
+
+        justify-content:center;
+
+        margin:auto;
+
+    }
+
+    .hero-stats{
+
+        flex-direction:column;
+
+    }
+
+    .hero-stat-card{
+
+        width:100%;
+
+    }
+
+    .wellness-info{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .wellness-score h1{
+
+        font-size:3.8rem;
+
+    }
 
 }
+
+@media(max-width:576px){
+
+    .hero-section{
+
+        padding:45px 0;
+
+    }
+
+    .hero-title{
+
+        font-size:1.9rem;
+
+    }
+
+    .hero-btn,
+
+    .hero-btn-outline{
+
+        width:100%;
+
+        text-align:center;
+
+    }
+
+    .wellness-card{
+
+        padding:25px;
+
+        border-radius:24px;
+
+    }
+
+    .wellness-score h1{
+
+        font-size:3.5rem;
+
+    }
+
+}
+
+/*==================================================
+Part 2
+Minimal Wellness Grid
+==================================================*/
+
+.wellness-grid-section{
+
+    padding:120px 0;
+
+    position:relative;
+
+    background:transparent;
+
+}
+
+.grid-subtitle{
+
+display:none;
+
+}
+
+
+.grid-title{
+
+    font-size:4rem;
+
+    font-weight:800;
+
+    line-height:1.15;
+
+    letter-spacing:-1px;
+
+    text-align: center;
+
+    color:#2F234A;
+
+    margin-bottom:24px;
+
+}
+
+.grid-title span{
+
+    background:linear-gradient(
+        135deg,
+        #9B7AF5,
+        #D88DBA
+    );
+
+    -webkit-background-clip:text;
+
+    background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+}
+
+.grid-description{
+
+    max-width:700px;
+
+    margin:0 auto;
+
+    text-align:center;
+
+    font-size:1.18rem;
+
+    line-height:1.9;
+
+    color:#8A7DA8;
+
+    font-weight:500;
+
+}
+
+/*=========================
+Grid
+=========================*/
+
+.wellness-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:24px;
+
+}
+
+/*=========================
+Cards
+=========================*/
+
+.wellness-item{
+
+    position:relative;
+
+    display:block;
+
+    overflow:hidden;
+
+    padding:34px;
+
+    border-radius:30px;
+
+    min-height:220px;
+
+    text-decoration:none;
+
+    transition:.35s;
+
+    box-shadow:0 20px 50px rgba(15,23,42,.05);
+
+}
+
+.wellness-item:hover{
+
+    transform:translateY(-8px);
+
+    text-decoration:none;
+
+    box-shadow:0 30px 70px rgba(15,23,42,.10);
+
+}
+
+/*=========================
+Pastel Backgrounds
+=========================*/
+
+.breathing-card{
+
+    background:linear-gradient(
+        135deg,
+        #E7D8FF,
+        #F0E4FF
+    );
+
+}
+
+.gratitude-card{
+
+    background:linear-gradient(
+        135deg,
+        #F7D9DF,
+        #F4D7EA
+    );
+
+}
+
+.chat-card{
+
+    background:linear-gradient(
+        135deg,
+        #F7D9DF,
+        #F4D7EA
+    );
+
+}
+
+.analytics-card{
+
+    background:linear-gradient(
+        135deg,
+        #DDD5FF,
+        #ECE4FF
+    );
+
+}
+
+/*=========================
+Top Row
+=========================*/
+
+.card-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:36px;
 
 }
 
 .card-icon{
 
-    width:70px;
+    width:56px;
 
-    height:70px;
+    height:56px;
 
-    margin:0 auto 20px;
+    border-radius:50%;
+
+    background:white;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:#8B5CF6;
+
+    font-size:22px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.05);
+
+}
+
+.card-pill{
+
+    background:white;
+
+    padding:8px 16px;
+
+    border-radius:40px;
+
+    font-size:.78rem;
+
+    font-weight:700;
+
+    color:#8B5CF6;
+
+    letter-spacing:.5px;
+
+}
+
+/*=========================
+Typography
+=========================*/
+
+.wellness-item h3{
+
+    color:#1F2937;
+
+    font-size:2rem;
+
+    font-weight:700;
+
+    margin-bottom:16px;
+
+    line-height:1.2;
+
+}
+
+.wellness-item p{
+
+    color:#5F6C7B;
+
+    font-size:1.05rem;
+
+    line-height:1.8;
+
+    margin:0;
+
+}
+
+/*=========================
+Soft Decorative Circle
+=========================*/
+
+.wellness-item::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:170px;
+
+    height:170px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.35);
+
+    right:-70px;
+
+    top:-70px;
+
+}
+
+/*=========================
+Hover Glow
+=========================*/
+
+.wellness-item:hover .card-icon{
+
+    transform:scale(1.08);
+
+}
+
+.card-icon{
+
+    transition:.35s;
+
+}
+
+/*=========================
+Responsive
+=========================*/
+
+@media(max-width:1200px){
+
+    .grid-title{
+
+        font-size:2.7rem;
+
+    }
+
+}
+
+@media(max-width:992px){
+
+    .wellness-grid-section{
+
+        padding:90px 0;
+
+    }
+
+    .grid-title{
+
+        margin-bottom:20px;
+
+    }
+
+    .grid-description{
+
+        max-width:none;
+
+        margin-bottom:40px;
+
+    }
+
+    .wellness-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .grid-title{
+
+        font-size:2.2rem;
+
+    }
+
+    .wellness-item{
+
+        min-height:auto;
+
+        padding:28px;
+
+    }
+
+    .wellness-item h3{
+
+        font-size:1.6rem;
+
+    }
+
+}
+
+@media(max-width:576px){
+
+    .wellness-grid-section{
+
+        padding:70px 0;
+
+    }
+
+    .grid-title{
+
+        font-size:1.9rem;
+
+    }
+
+    .grid-description{
+
+        font-size:1.05rem;
+
+    }
+
+    .card-icon{
+
+        width:50px;
+
+        height:50px;
+
+        font-size:20px;
+
+    }
+
+}
+
+/*==================================================
+  PsychAI Home Page
+  Part 3B.1
+  Daily Wellness Section
+==================================================*/
+.wellness-section{
+
+    position:relative;
+
+    padding:110px 0;
+
+    overflow:hidden;
+    
+    background:transparent;
+}
+
+
+/*==================================================
+Daily Wellness Header
+==================================================*/
+
+.daily-wellness-header{
+
+    max-width:1000px;
+
+    margin:0 auto 60px;
+
+    text-align:center;
+
+}
+
+.daily-wellness-header h2{
+
+    font-size:4.2rem;
+
+    font-weight:800;
+
+    line-height:1.15;
+
+    color:#2F234A;
+
+    margin:0 0 22px;
+
+    letter-spacing:-1px;
+
+}
+
+.daily-wellness-header h2 span{
+
+    background:linear-gradient(
+        135deg,
+        #9B7AF5,
+        #D88DBA
+    );
+
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+
+}
+
+.daily-wellness-header p{
+
+    max-width:760px;
+
+    margin:0 auto;
+
+    font-size:1.18rem;
+
+    line-height:1.9;
+
+    color:#8A7DA8;
+
+    font-weight:500;
+
+}
+/*=========================================
+Activity Card
+=========================================*/
+
+/*=========================================
+Activity Card
+=========================================*/
+
+.wellness-activity-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:flex-start;
+
+    height:100%;
+
+    min-height:265px;
+
+    padding:32px;
+
+    border-radius:28px;
+
+    transition:.35s;
+
+}
+
+.wellness-activity-card:hover{
+
+    transform:translateY(-6px);
+
+}
+
+.wellness-grid{
+
+    position:relative;
+
+    z-index:3;
+
+}
+
+.activity-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:42px;
+
+}
+
+.activity-circle{
+
+    width:54px;
+
+    height:54px;
+
+    border-radius:50%;
+
+    background:#fff;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:#8B5CF6;
+
+    font-size:22px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.05);
+
+}
+
+.activity-time{
+
+    font-size:.9rem;
+
+    font-style:italic;
+
+    color:#7B63D7;
+
+    font-weight:600;
+
+}
+
+
+/*=========================================
+Typography
+=========================================*/
+
+.wellness-activity-card h4{
+
+    font-family:"Playfair Display",serif;
+
+    font-size:2.2rem;
+
+    font-weight:700;
+
+    line-height:1.15;
+
+    color:#251B46;
+
+    margin-bottom:18px;
+
+}
+
+.wellness-activity-card p{
+
+    font-family:"Playfair Display",serif;
+
+    font-style:italic;
+
+    font-size:1.15rem;
+
+    line-height:1.75;
+
+    color:#54496F;
+
+    max-width:230px;
+
+    margin:0;
+
+}
+
+.col-lg-3:nth-child(1) .wellness-activity-card{
+
+    background:linear-gradient(135deg,#EEE1FF,#F4E9FF);
+
+}
+
+.col-lg-3:nth-child(2) .wellness-activity-card{
+
+    background:linear-gradient(135deg,#F8DEE4,#F6E6EE);
+
+}
+
+.col-lg-3:nth-child(3) .wellness-activity-card{
+
+    background:linear-gradient(135deg,#F5DCEB,#EEE6FF);
+
+}
+
+.col-lg-3:nth-child(4) .wellness-activity-card{
+
+    background:linear-gradient(135deg,#EEE5FF,#F6E2EE);
+
+}
+
+.wellness-activity-card::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:180px;
+
+    height:180px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.28);
+
+    top:-70px;
+
+    right:-70px;
+
+}
+
+/*=========================================
+Info Section
+=========================================*/
+
+.wellness-section .row{
+
+    position:relative;
+
+    z-index:3;
+
+    row-gap:48px;
+
+}
+
+.wellness-section .col-lg-3{
+
+    position:relative;
+
+}
+
+/*==================================================
+  PsychAI Home Page
+  Part 3B.2
+  Wellness Cards - Buttons, Animations & Responsive
+==================================================*/
+
+/* Responsive */
+
+@media (max-width:992px){
+
+    .wellness-activity-card{
+
+        padding:30px;
+
+    }
+
+}
+
+@media (max-width:768px){
+
+    .wellness-activity-card{
+
+        padding:26px;
+
+    }
+
+    .activity-icon{
+
+        width:68px;
+
+        height:68px;
+
+        font-size:26px;
+
+    }
+
+    .wellness-activity-card h4{
+
+        font-size:1.3rem;
+
+    }
+
+}
+
+@media (max-width:576px){
+
+    .wellness-activity-card{
+
+        padding:22px;
+
+    }
+
+    .activity-btn{
+
+        padding:14px 18px;
+
+        font-size:.92rem;
+
+    }
+
+}
+
+
+/*=========================================
+Hover Enhancements
+=========================================*/
+
+
+.wellness-activity-card:hover .activity-info i{
+
+    transform:scale(1.15);
+
+}
+
+.activity-info i{
+
+    transition:.3s;
+
+}
+
+.wellness-section .container{
+
+    max-width:1320px;
+
+}
+
+
+/*=========================================
+Responsive
+=========================================*/
+
+@media(max-width:1200px){
+
+    .wellness-section{
+
+        padding:80px 0;
+
+    }
+
+}
+
+@media(max-width:992px){
+
+    .wellness-section{
+
+        padding:70px 0;
+
+    }
+
+    .wellness-activity-card{
+
+        padding:28px;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .wellness-activity-card{
+
+        border-radius:24px;
+
+    }
+
+    .activity-icon{
+
+        width:68px;
+
+        height:68px;
+
+        font-size:26px;
+
+    }
+
+    .wellness-activity-card h4{
+
+        font-size:1.3rem;
+
+    }
+
+    .activity-btn{
+
+        padding:14px;
+
+    }
+
+}
+
+@media(max-width:576px){
+
+    .wellness-section{
+
+        padding:55px 0;
+
+    }
+
+    .wellness-activity-card{
+
+        padding:24px;
+
+    }
+
+    .activity-info{
+
+        gap:10px;
+
+    }
+
+    .activity-btn{
+
+        font-size:.9rem;
+
+    }
+
+}
+
+/*==================================================
+  PsychAI Home Page
+  Part 4
+  Daily Reflection
+==================================================*/
+
+.reflection-section{
+
+    padding:90px 0;
+
+    background:transparent;
+
+}
+
+.reflection-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:#CFEBFF !important;
+
+    border:1px solid #B8DCF7 !important;
+
+    backdrop-filter:blur(20px);
+
+    border-radius:32px;
+
+    padding:60px;
+
+    box-shadow:0 25px 60px rgba(74,144,226,.15);
+
+}
+
+.reflection-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:260px;
+
+    height:260px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.45);
+
+    right:-80px;
+
+    top:-80px;
+
+}
+
+.reflection-card::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:180px;
+
+    height:180px;
+
+    border-radius:50%;
+
+    background:rgba(223,243,255,.70);
+
+    left:-60px;
+
+    bottom:-60px;
+
+}
+
+.reflection-tag{
+
+    display:inline-block;
+
+    padding:10px 22px;
+
+    background:#F4FAFF;
+
+    color:var(--primary);
+
+    border-radius:50px;
+
+    font-weight:700;
+
+    margin-bottom:28px;
+
+}
+
+.reflection-title{
+
+    font-size:2.3rem;
+
+    font-weight:800;
+
+    color:var(--dark);
+
+    line-height:1.4;
+
+    margin-bottom:25px;
+
+}
+
+.reflection-text{
+
+    font-size:1.08rem;
+
+    line-height:1.8;
+
+    color:var(--gray);
+
+    max-width:700px;
+
+}
+
+.reflection-footer{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:30px;
+
+    margin-top:35px;
+
+}
+
+.reflection-author,
+
+.reflection-date{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    font-weight:600;
+
+    color:var(--dark);
+
+}
+
+.reflection-author i,
+
+.reflection-date i{
+
+    color:var(--primary);
+
+}
+
+.quote-circle{
+
+    width:180px;
+
+    height:180px;
+
+    margin:auto;
 
     border-radius:50%;
 
@@ -277,20 +1947,1735 @@ body::before{
 
     justify-content:center;
 
-    background:#159895;
+    background:white;
 
-    font-size:30px;
+    color:var(--primary);
 
-    color:white;
+    font-size:70px;
 
-    box-shadow:0 5px 15px rgba(0,0,0,.3);
+    box-shadow:0 20px 45px rgba(74,144,226,.15);
+
+    animation:quoteFloat 5s ease-in-out infinite;
 
 }
 
-.ai-card .card-icon{
+@keyframes quoteFloat{
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-15px);
+
+    }
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+
+}
+
+@media(max-width:992px){
+
+    .reflection-card{
+
+        padding:45px;
+
+        text-align:center;
+
+    }
+
+    .quote-circle{
+
+        margin-top:40px;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .reflection-title{
+
+        font-size:1.8rem;
+
+    }
+
+    .reflection-text{
+
+        font-size:1rem;
+
+    }
+
+    .reflection-footer{
+
+        justify-content:center;
+
+    }
+
+}
+
+@media(max-width:576px){
+
+    .reflection-card{
+
+        padding:30px;
+
+    }
+
+    .quote-circle{
+
+        width:130px;
+
+        height:130px;
+
+        font-size:50px;
+
+    }
+
+}
+
+
+/*=========================================
+Latest Assessment Header
+=========================================*/
+
+.latest-section{
+
+    padding:90px 0;
+
+    background:transparent;
+
+}
+
+.latest-header{
+
+    max-width:900px;
+
+    margin:0 auto 80px;
+
+    text-align:center;
+
+}
+
+.latest-tag{
+    display:none;
+}
+
+.latest-header h2{
+
+    margin:0 0 24px;
+
+    font-size:4rem;
+
+    font-weight:800;
+
+    line-height:1.15;
+
+    letter-spacing:-1px;
+
+    color:#2F234A;
+
+}
+
+.latest-header h2 span{
+
+    background:linear-gradient(
+        135deg,
+        #6EA8FF,
+        #7FC7FF
+    );
+
+    -webkit-background-clip:text;
+
+    background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+}
+
+.latest-header p{
+
+    max-width:760px;
+
+    margin:0 auto;
+
+    color:#7D87A8;
+
+    font-size:1.18rem;
+
+    line-height:1.9;
+
+    font-weight:500;
+
+}
+
+.latest-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:rgba(255,255,255,.72);
+
+    backdrop-filter:blur(20px);
+
+    -webkit-backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,.45);
+
+    border-radius:35px;
+
+    padding:55px;
+
+    box-shadow:0 25px 60px rgba(185,140,246,.08);
+
+}
+
+.score-circle{
+
+    width:180px;
+
+    height:180px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    background:linear-gradient(
+        135deg,
+        var(--primary),
+        var(--accent)
+    );
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:white;
+
+    font-size:4rem;
+
+    font-weight:800;
+
+    box-shadow:0 25px 50px rgba(74,144,226,.25);
+
+}
+
+.assessment-name{
+
+    margin-top:25px;
+
+    font-weight:700;
+
+}
+
+.assessment-date{
+
+    color:var(--gray);
+
+}
+
+.assessment-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:25px;
+
+    margin-bottom:40px;
+
+}
+
+.assessment-item{
+
+    background:#F8FCFF;
+
+    padding:22px;
+
+    border-radius:20px;
+
+}
+
+.assessment-item span:first-child{
+
+    display:block;
+
+    color:var(--gray);
+
+    margin-bottom:8px;
+
+}
+
+.assessment-item h5{
+
+    margin:0;
+
+    font-weight:700;
+
+}
+
+.severity-pill{
+
+    display:inline-block;
+
+    padding:5px 14px;
+
+    border-radius:40px;
+
+    background:linear-gradient(
+        135deg,
+        var(--primary),
+        var(--accent)
+    );
+
+    color:white;
+
+    font-weight:700;
+
+}
+
+.assessment-progress{
+
+    margin:35px 0;
+
+}
+
+.progress-title{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-bottom:12px;
+
+    font-weight:600;
+
+}
+
+.assessment-bar{
+
+    height:12px;
+
+    background:#E8EEF7;
+
+    border-radius:30px;
+
+    overflow:hidden;
+
+}
+
+.assessment-fill{
+
+    width:72%;
+
+    height:100%;
+
+    background:linear-gradient(
+        90deg,
+        var(--primary),
+        var(--accent)
+    );
+
+}
+
+.assessment-note{
+
+    margin:35px 0;
+
+    background:#EDF7FF;
+
+    padding:22px;
+
+    border-radius:18px;
+
+    color:var(--dark);
+
+}
+
+.assessment-note i{
+
+    color:var(--primary);
+
+    margin-right:10px;
+
+}
+
+.assessment-buttons{
+
+    display:flex;
+
+    gap: 16px;
+
+    flex-wrap:wrap;
+
+}
+
+.assessment-btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:10px;
+
+    padding:15px 30px;
+
+    border-radius:18px;
+
+    text-decoration:none;
+
+    color:white;
+
+    font-weight:700;
+
+    background:linear-gradient(
+        135deg,
+        var(--primary),
+        var(--accent)
+    );
+
+    transition:.35s;
+
+}
+
+.assessment-btn:hover{
+
+    transform:translateY(-4px);
+
+    color:white;
+
+}
+
+.assessment-btn.secondary{
 
     background:white;
 
-    color:#159895;
+    color:var(--primary);
+
+    border:2px solid var(--primary);
+
+}
+
+.assessment-btn.secondary:hover{
+
+    background:var(--primary);
+
+    color:white;
+
+}
+
+.empty-assessment{
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:rgba(255,255,255,.72);
+
+    backdrop-filter:blur(20px);
+
+    -webkit-backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,.45);
+
+    padding:70px;
+
+    border-radius:35px;
+
+    text-align:center;
+
+    box-shadow:0 25px 60px rgba(185,140,246,.08);
+
+}
+
+.empty-assessment i{
+
+    font-size:70px;
+
+    color:var(--primary);
+
+    margin-bottom:25px;
+
+}
+
+@media(max-width:992px){
+
+    .assessment-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .latest-card{
+
+        padding:35px;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .score-circle{
+
+        width:140px;
+
+        height:140px;
+
+        font-size:3rem;
+
+        margin-bottom:30px;
+
+    }
+
+    .assessment-buttons{
+
+        flex-direction:column;
+
+    }
+
+}
+
+/*==================================================
+Part 6
+Assessment Timeline
+==================================================*/
+
+.history-section{
+
+    padding:90px 0;
+
+    background:transparent;
+}
+
+.timeline{
+
+    position:relative;
+
+    max-width:950px;
+
+    margin:auto;
+
+}
+
+.timeline::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:34px;
+
+    top:0;
+
+    bottom:0;
+
+    width:4px;
+
+    background:linear-gradient(
+        var(--primary),
+        var(--accent)
+    );
+
+    border-radius:20px;
+
+}
+
+.timeline-card{
+
+    position:relative;
+
+    display:flex;
+
+    gap:30px;
+
+    margin-bottom:35px;
+
+}
+
+.timeline-icon{
+
+    width:70px;
+
+    height:70px;
+
+    min-width:70px;
+
+    border-radius:50%;
+
+    background:linear-gradient(
+        135deg,
+        var(--primary),
+        var(--accent)
+    );
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:white;
+
+    font-size:28px;
+
+    box-shadow:0 15px 35px rgba(74,144,226,.25);
+
+    z-index:2;
+
+}
+
+.timeline-content{
+
+    flex:1;
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:rgba(255,255,255,.72);
+
+    backdrop-filter:blur(20px);
+
+    -webkit-backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,.45);
+
+    border-radius:26px;
+
+    padding:28px;
+
+    box-shadow:0 18px 45px rgba(185,140,246,.08);
+
+    transition:.35s;
+
+}
+
+.timeline-content:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 28px 60px rgba(74,144,226,.18);
+
+}
+
+.timeline-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:22px;
+
+}
+
+.timeline-header h4{
+
+    margin:0;
+
+    font-weight:700;
+
+    color:var(--dark);
+
+}
+
+.timeline-date{
+
+    color:var(--gray);
+
+    font-size:.9rem;
+
+}
+
+.timeline-score{
+
+    width:70px;
+
+    height:70px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#EDF7FF;
+
+    color:var(--primary);
+
+    font-weight:800;
+
+    font-size:1.4rem;
+
+}
+
+.timeline-body{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:20px;
+
+}
+
+.timeline-info{
+
+    background:#F8FCFF;
+
+    border-radius:18px;
+
+    padding:18px;
+
+}
+
+.timeline-info label{
+
+    display:block;
+
+    color:var(--gray);
+
+    font-size:.85rem;
+
+    margin-bottom:8px;
+
+}
+
+.timeline-info strong{
+
+    color:var(--dark);
+
+}
+
+.timeline-badge{
+
+    display:inline-block;
+
+    padding:8px 18px;
+
+    border-radius:50px;
+
+    background:linear-gradient(
+        135deg,
+        var(--primary),
+        var(--accent)
+    );
+
+    color:white;
+
+    font-weight:700;
+
+}
+
+.history-empty{
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:rgba(255,255,255,.72);
+
+    backdrop-filter:blur(20px);
+
+    -webkit-backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,.45);
+
+    padding:60px;
+
+    border-radius:30px;
+
+    text-align:center;
+
+    box-shadow:0 20px 50px rgba(185,140,246,.08);
+
+}
+
+.history-empty i{
+
+    font-size:65px;
+
+    color:var(--primary);
+
+    margin-bottom:20px;
+
+}
+
+@media(max-width:768px){
+
+    .timeline::before{
+
+        display:none;
+
+    }
+
+    .timeline-card{
+
+        flex-direction:column;
+
+        align-items:center;
+
+    }
+
+    .timeline-header{
+
+        flex-direction:column;
+
+        gap:15px;
+
+        text-align:center;
+
+    }
+
+    .timeline-body{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+/*==================================================
+Part 7
+AI Recommendation Banner
+==================================================*/
+
+.ai-section{
+
+    padding:90px 0;
+
+    background:transparent;
+}
+
+.ai-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:linear-gradient(
+        135deg,
+        #4A90E2,
+        #8B5CF6
+    );
+
+    border-radius:35px;
+
+    padding:60px;
+
+    color:white;
+
+    box-shadow:0 30px 70px rgba(74,144,226,.22);
+
+}
+
+.ai-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:300px;
+
+    height:300px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.08);
+
+    right:-120px;
+
+    top:-120px;
+
+}
+
+.ai-card::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:220px;
+
+    height:220px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.05);
+
+    left:-80px;
+
+    bottom:-80px;
+
+}
+
+.ai-tag{
+
+    display:inline-block;
+
+    padding:10px 22px;
+
+    border-radius:40px;
+
+    background:rgba(255,255,255,.18);
+
+    font-weight:700;
+
+    margin-bottom:25px;
+
+}
+
+.ai-card h2{
+
+    font-size:2.6rem;
+
+    font-weight:800;
+
+    margin-bottom:25px;
+
+}
+
+.ai-card p{
+
+    max-width:780px;
+
+    line-height:2;
+
+    opacity:.95;
+
+    margin-bottom:35px;
+
+}
+
+.ai-highlights{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:18px;
+
+    margin-bottom:40px;
+
+}
+
+.highlight-box{
+
+    display:flex;
+
+    gap:15px;
+
+    align-items:center;
+
+    background:rgba(255,255,255,.12);
+
+    border-radius:20px;
+
+    padding:20px;
+
+    backdrop-filter:blur(12px);
+
+}
+
+.highlight-box i{
+
+    font-size:30px;
+
+}
+
+.highlight-box h5{
+
+    margin:0;
+
+    font-weight:700;
+
+}
+
+.highlight-box span{
+
+    font-size:.9rem;
+
+    opacity:.9;
+
+}
+
+.ai-buttons{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:20px;
+
+}
+
+.ai-btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:15px 28px;
+
+    border-radius:18px;
+
+    background:white;
+
+    color:var(--primary);
+
+    text-decoration:none;
+
+    font-weight:700;
+
+    transition:.35s;
+
+}
+
+.ai-btn:hover{
+
+    transform:translateY(-4px);
+
+    color:var(--primary);
+
+}
+
+.ai-btn.secondary{
+
+    background:transparent;
+
+    border:2px solid rgba(255,255,255,.4);
+
+    color:white;
+
+}
+
+.ai-btn.secondary:hover{
+
+    background:white;
+
+    color:var(--primary);
+
+}
+
+.ai-illustration{
+
+    position:relative;
+
+    width:260px;
+
+    height:260px;
+
+    margin:auto;
+
+}
+
+.ai-circle{
+
+    width:170px;
+
+    height:170px;
+
+    border-radius:50%;
+
+    background:white;
+
+    color:var(--primary);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:75px;
+
+    position:absolute;
+
+    top:45px;
+
+    left:45px;
+
+    z-index:3;
+
+}
+
+.pulse-ring{
+
+    position:absolute;
+
+    border:2px solid rgba(255,255,255,.35);
+
+    border-radius:50%;
+
+    animation:pulseAI 3s infinite;
+
+}
+
+.ring1{
+
+    width:210px;
+
+    height:210px;
+
+    top:25px;
+
+    left:25px;
+
+}
+
+.ring2{
+
+    width:250px;
+
+    height:250px;
+
+    top:5px;
+
+    left:5px;
+
+    animation-delay:1s;
+
+}
+
+.ring3{
+
+    width:290px;
+
+    height:290px;
+
+    top:-15px;
+
+    left:-15px;
+
+    animation-delay:2s;
+
+}
+
+@keyframes pulseAI{
+
+    0%{
+
+        transform:scale(.95);
+
+        opacity:1;
+
+    }
+
+    100%{
+
+        transform:scale(1.08);
+
+        opacity:.25;
+
+    }
+
+}
+
+@media(max-width:992px){
+
+    .ai-highlights{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .ai-card{
+
+        padding:40px;
+
+        text-align:center;
+
+    }
+
+    .ai-buttons{
+
+        justify-content:center;
+
+    }
+
+    .ai-illustration{
+
+        margin-top:50px;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .ai-card h2{
+
+        font-size:2rem;
+
+    }
+
+    .ai-circle{
+
+        width:130px;
+
+        height:130px;
+
+        font-size:55px;
+
+        top:50px;
+
+        left:50px;
+
+    }
+
+    .ai-illustration{
+
+        width:220px;
+
+        height:220px;
+
+    }
+
+}
+
+/*==================================================
+Part 8
+Emergency Support
+==================================================*/
+
+.emergency-section{
+
+    padding:90px 0 110px;
+
+    background:transparent;
+}
+
+.emergency-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:linear-gradient(
+        135deg,
+        #FFF6F6,
+        #FFE9EC
+    );
+
+    border-radius:35px;
+
+    padding:60px;
+
+    border:1px solid rgba(255,120,120,.15);
+
+    box-shadow:0 25px 60px rgba(255,120,120,.12);
+
+}
+
+.emergency-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:260px;
+
+    height:260px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.35);
+
+    right:-90px;
+
+    top:-90px;
+
+}
+
+.emergency-tag{
+
+    display:inline-block;
+
+    padding:10px 22px;
+
+    border-radius:50px;
+
+    background:#ffffff;
+
+    color:#E74C3C;
+
+    font-weight:700;
+
+    margin-bottom:22px;
+
+}
+
+.emergency-card h2{
+
+    font-size:2.4rem;
+
+    font-weight:800;
+
+    color:var(--dark);
+
+    margin-bottom:22px;
+
+}
+
+.emergency-card p{
+
+    color:var(--gray);
+
+    line-height:2;
+
+    max-width:720px;
+
+    margin-bottom:35px;
+
+}
+
+.emergency-actions{
+
+    display:flex;
+
+    gap:18px;
+
+    flex-wrap:wrap;
+
+}
+
+.emergency-btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:15px 30px;
+
+    border-radius:18px;
+
+    text-decoration:none;
+
+    font-weight:700;
+
+    color:#ffffff;
+
+    background:linear-gradient(
+        135deg,
+        #E74C3C,
+        #FF6B81
+    );
+
+    transition:.35s;
+
+}
+
+.emergency-btn:hover{
+
+    color:#ffffff;
+
+    transform:translateY(-4px);
+
+    box-shadow:0 18px 35px rgba(231,76,60,.25);
+
+}
+
+.emergency-btn.secondary{
+
+    background:#ffffff;
+
+    color:#E74C3C;
+
+    border:2px solid #E74C3C;
+
+}
+
+.emergency-btn.secondary:hover{
+
+    background:#E74C3C;
+
+    color:#ffffff;
+
+}
+
+.emergency-icon{
+
+    width:190px;
+
+    height:190px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#ffffff;
+
+    color:#E74C3C;
+
+    font-size:80px;
+
+    box-shadow:0 25px 55px rgba(231,76,60,.18);
+
+    animation:emergencyFloat 4.5s ease-in-out infinite;
+
+}
+
+@keyframes emergencyFloat{
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-12px);
+
+    }
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+
+}
+
+@media(max-width:992px){
+
+    .emergency-card{
+
+        text-align:center;
+
+        padding:45px;
+
+    }
+
+    .emergency-actions{
+
+        justify-content:center;
+
+    }
+
+    .emergency-icon{
+
+        margin-top:40px;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .emergency-card h2{
+
+        font-size:2rem;
+
+    }
+
+    .emergency-icon{
+
+        width:150px;
+
+        height:150px;
+
+        font-size:60px;
+
+    }
+
+}
+
+@media(max-width:576px){
+
+    .emergency-card{
+
+        padding:30px;
+
+    }
+
+    .emergency-actions{
+
+        flex-direction:column;
+
+    }
+
+    .emergency-btn{
+
+        width:100%;
+
+    }
+
+}
+
+/*==================================================
+Part 9
+Professional Footer
+==================================================*/
+
+.home-footer{
+
+    background:#1F2937;
+
+    color:#D1D5DB;
+
+    padding:80px 0 25px;
+
+}
+
+.footer-brand{
+
+    max-width:360px;
+
+}
+
+.footer-logo{
+
+    width:70px;
+
+    height:70px;
+
+    border-radius:18px;
+
+    background:linear-gradient(
+        135deg,
+        var(--primary),
+        var(--accent)
+    );
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:#fff;
+
+    font-size:32px;
+
+    margin-bottom:20px;
+
+}
+
+.footer-brand h3{
+
+    color:#fff;
+
+    font-weight:800;
+
+    margin-bottom:15px;
+
+}
+
+.footer-brand p{
+
+    line-height:1.9;
+
+}
+
+.home-footer h5{
+
+    color:#fff;
+
+    font-weight:700;
+
+    margin-bottom:22px;
+
+}
+
+.footer-links{
+
+    list-style:none;
+
+    padding:0;
+
+    margin:0;
+
+}
+
+.footer-links li{
+
+    margin-bottom:14px;
+
+}
+
+.footer-links a{
+
+    color:#D1D5DB;
+
+    text-decoration:none;
+
+    transition:.3s;
+
+}
+
+.footer-links a:hover{
+
+    color:#ffffff;
+
+    padding-left:6px;
+
+}
+
+.footer-contact{
+
+    list-style:none;
+
+    padding:0;
+
+    margin:0;
+
+}
+
+.footer-contact li{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin-bottom:16px;
+
+}
+
+.footer-contact i{
+
+    color:var(--primary);
+
+    width:20px;
+
+}
+
+.footer-social{
+
+    display:flex;
+
+    gap:14px;
+
+    margin-top:25px;
+
+}
+
+.footer-social a{
+
+    width:42px;
+
+    height:42px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.08);
+
+    color:#fff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-decoration:none;
+
+    transition:.35s;
+
+}
+
+.footer-social a:hover{
+
+    background:linear-gradient(
+        135deg,
+        var(--primary),
+        var(--accent)
+    );
+
+    transform:translateY(-4px);
+
+}
+
+.home-footer hr{
+
+    border-color:rgba(255,255,255,.12);
+
+    margin:50px 0 25px;
+
+}
+
+.footer-bottom{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:15px;
+
+    font-size:.95rem;
+
+}
+
+.footer-bottom p{
+
+    margin:0;
+
+}
+
+@media(max-width:768px){
+
+    .home-footer{
+
+        text-align:center;
+
+    }
+
+    .footer-brand{
+
+        margin:auto;
+
+    }
+
+    .footer-contact li{
+
+        justify-content:center;
+
+    }
+
+    .footer-social{
+
+        justify-content:center;
+
+    }
+
+    .footer-bottom{
+
+        justify-content:center;
+
+        flex-direction:column;
+
+    }
 
 }
